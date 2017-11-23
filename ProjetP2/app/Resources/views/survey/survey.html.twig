@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="question">
+        <h1>Créez votre question</h1>
+        <select autocomplete="off">
+            <option value="" selected disabled hidden>Choisissez votre type de question</option>
+            <option value="0">Texte libre</option>
+            <option value="1">Choix unique</option>
+            <option value="2">Choix multiples</option>
+            <option value="3">Nombre entier</option>
+            <option value="4">Nombre décimal</option>
+            <option value="5">Plage numérique</option>
+            <option value="6">Nombre personnes/d'articles</option>
+            <option value="7">Supplément de prix</option>
+        </select>
+        <div id="content">
+            <label for='textContent'>Titre de votre question :</label>
+            <input id='textContent' type='text'>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+
