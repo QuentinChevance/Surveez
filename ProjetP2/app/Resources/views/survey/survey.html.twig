@@ -3,8 +3,9 @@
 {% block body %}
     <div class="question">
         <h1>Créez votre question</h1>
-        <select>
-            <option value="0" selected="selected">Texte libre</option>
+        <select autocomplete="off">
+            <option value="" selected disabled hidden>Choisissez votre type de question</option>
+            <option value="0">Texte libre</option>
             <option value="1">Choix unique</option>
             <option value="2">Choix multiples</option>
             <option value="3">Nombre entier</option>
