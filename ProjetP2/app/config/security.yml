@@ -2,10 +2,34 @@
 # https://symfony.com/doc/current/security.html
 security:
 
+    encoders:
+        AppBundle\Entity\User: plaintext
+
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+        db_provider:
+            entity:
+                class: AppBundle:User
+                property: mail
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    admin:
+                        password: admin!
+                        roles: [ ROLE_ADMIN ]
+                    toto:
+                        password: toto42
+                        roles: [ ROLE_USER ]
+
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+
+    access_control:
+        -
+            path: ^/product/new
+            roles: [ ROLE_USER ]
+
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -13,12 +37,35 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+#        secured_area:
+#            http_basic:
+#                realm: "Admin section"
+#            provider: in_memory
+#            pattern: ^/product/new
+
+#        secured_area:
+#            pattern: ^/product/new
+#            form_login:
+#                check_path: login
+#                login_path: login
+#            provider: in_memory
+#            logout:
+#                path: logout
+
         main:
-            anonymous: ~
+            anonymous: true
+            provider: db_provider
+            form_login:
+                check_path: login
+                login_path: login
+            logout:
+                path: logout
+            pattern: ^/
+
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+

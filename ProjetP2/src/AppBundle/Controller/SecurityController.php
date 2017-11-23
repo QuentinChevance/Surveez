@@ -61,10 +61,10 @@ class SecurityController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
+            //$password = $encoder->encodePassword($user, $user->getPlainPassword());
 
-            $password = $encoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-            $user->setType("user");
+            $user->setNbSurvey(0);
+            $user->setStatus(0);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
