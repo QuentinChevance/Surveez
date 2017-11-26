@@ -26,6 +26,8 @@ class SurveyController extends Controller
      */
     public function createSurvey(Request $request){
         $survey = new Survey();
+        $user = $this->getUser();
+
 
         $form = $this->createForm(SurveyType::class, $survey);
         $form->add('Créer', SubmitType::class);
@@ -35,7 +37,15 @@ class SurveyController extends Controller
             $survey->setIsActive(false);
             $survey->setScope("public");
             $survey->setType("general");
-            $survey->setUrl("urlDeTest5");
+            $words = explode(" ", $survey->getTitle());
+            $acronym = "";
+
+            foreach ($words as $w) {
+                $acronym .= $w[0];
+            }
+            $survey->setUrl(uniqid($acronym));
+            $survey->setUser($user);
+            $user->setNbSurvey();
             $em = $this->getDoctrine()->getManager();
             $em->persist($survey);
             $em->flush();

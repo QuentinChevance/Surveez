@@ -72,6 +72,18 @@ class Survey
 
 
     /**
+     * @var \AppBundle\Entity\Question[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="survey")
+     */
+    protected $questions;
+
+    /**
+     * @var \AppBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="surveys")
+     */
+    protected $user;
+
+    /**
      * Get id
      *
      * @return int
@@ -248,5 +260,38 @@ class Survey
     {
         return $this->isActive;
     }
+
+    /**
+     * @return Question[]
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+
+    /**
+     * @param Question[] $questions
+     */
+    public function setQuestions($questions)
+    {
+        $this->questions = $questions;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 }
 

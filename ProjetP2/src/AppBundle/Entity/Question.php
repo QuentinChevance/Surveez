@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Question
@@ -56,6 +57,11 @@ class Question
      */
     private $parentId;
 
+    /**
+     * @var \AppBundle\Entity\Survey
+     * @ManyToOne(targetEntity="AppBundle\Entity\Survey", inversedBy="questions")
+     */
+    protected $survey;
 
     /**
      * Get id
@@ -186,5 +192,23 @@ class Question
     {
         return $this->parentId;
     }
+
+    /**
+     * @return Survey
+     */
+    public function getSurvey()
+    {
+        return $this->survey;
+    }
+
+    /**
+     * @param Survey $survey
+     */
+    public function setSurvey($survey)
+    {
+        $this->survey = $survey;
+    }
+
+
 }
 

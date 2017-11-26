@@ -78,6 +78,11 @@ class User implements UserInterface, \Serializable
      */
     protected $plainPassword;
 
+    /**
+     * @var \AppBundle\Entity\Survey[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Survey", mappedBy="user")
+     */
+    protected $surveys;
 
     /**
      * Get id
@@ -192,9 +197,9 @@ class User implements UserInterface, \Serializable
      *
      * @return User
      */
-    public function setNbSurvey($nbSurvey)
+    public function setNbSurvey()
     {
-        $this->nbSurvey = $nbSurvey;
+        $this->nbSurvey++;
 
         return $this;
     }
@@ -271,6 +276,22 @@ class User implements UserInterface, \Serializable
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @return Survey[]
+     */
+    public function getSurveys()
+    {
+        return $this->surveys;
+    }
+
+    /**
+     * @param Survey[] $surveys
+     */
+    public function setSurveys($surveys)
+    {
+        $this->surveys = $surveys;
     }
 
     /**

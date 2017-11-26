@@ -1,7 +1,8 @@
 (function($){
     "use strict";
     console.log("on est là");
-    var $options = $(".question select option");
+    var $options = $(".question select option"),
+        $content = $("#content");
     $options.on('click',function(){
         var $this = $(this);
         $options.each(function () {
@@ -10,10 +11,10 @@
         $this.attr('selected','selected');
         switch ($this.attr("value")){
             case "0":
-                $("#content").html("<label for='textContent'>Titre de votre question :</label><input id='textContent' type='text'>");
+                $content.html("<label for='textContent'>Titre de votre question :</label><input id='textContent' type='text'>");
                 break;
             case "1":
-                $("#content").html("<label for='textContent'>Titre de votre question :</label><input id='textcontent' type='text'><div id='answers'><div><input type='text'></div></div><button id='addRadio'>Ajouter une réponse</button>");
+                $content.html("<label for='textContent'>Titre de votre question :</label><input id='textcontent' type='text'><div id='answers'><div><input type='text'></div></div><button id='addRadio'>Ajouter une réponse</button>");
                 break;
 
         }
@@ -29,5 +30,9 @@
         });
     $("#createSurvey").on('click',function () {
         window.location = "/createSurvey";
-    })
+    });
+
+    $("#addQuestion").on('click',function () {
+        window.location = "/addQuestion";
+    });
 }(jQuery));
