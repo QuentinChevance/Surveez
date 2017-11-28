@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if app.user %}
     <h1>Accueil</h1>
 
     <div>
         <button id="createSurvey">Créer un questionnaire</button>
     </div>
+    {% else %}
+        <h1>Accueil</h1>
+
+        <div>
+            <a href="/login"> Se connecter </a>
+
+        </div>
+        <a href="/register"> S'inscrire </a>
+    {% endif %}
+
 {% endblock %}
 
 {% block stylesheets %}

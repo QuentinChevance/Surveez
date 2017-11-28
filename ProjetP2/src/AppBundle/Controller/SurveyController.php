@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Question;
 use AppBundle\Entity\Survey;
 use AppBundle\form\SurveyType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,10 +16,37 @@ class SurveyController extends Controller
     /**
      * @Route("/survey/{id}", name="survey")
      */
-    public function indexAction($id)
+    public function indexAction($id,Request $request)
     {
         echo "mon id".$id;
-        return $this->render('survey/survey.html.twig');
+
+
+        if(isset($request)){
+            $text = $request->get('textContent');
+            $value = $request->get('test');
+            var_dump($text.' '.$value);
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('AppBundle:Survey')
+            ;
+            $question = new Question();
+            $survey = $repository->findOneBy(array('id' => $id));
+            $question->setTitle($text);
+            $question->setType($value);
+            $question->setFormat("text");
+            $question->setParentId(2);
+            $question->setSurvey($survey);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($question);
+            $em->flush();
+        }
+
+
+
+        return $this->render('survey/survey.html.twig', [
+            'id' => $id,
+        ]);
     }
 
     /**
@@ -57,4 +85,16 @@ class SurveyController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
+    public function formSurveyAction(Request $request)
+
+    {
+
+       var_dump($request);
+
+
+
+
+        }
+
 }

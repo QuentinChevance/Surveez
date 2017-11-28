@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if app.user %}
     <div class="content">
         <label for="textContent">Titre de votre question :</label>
         <input id="textContent" type="text">
     </div>
+    {% else %}
+        <h1>Veuillez vous connecter</h1>
+        <div>
+            <a href="/login"> Se connecter </a>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block stylesheets %}

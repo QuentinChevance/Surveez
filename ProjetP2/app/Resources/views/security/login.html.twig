@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    {{ render(controller('AppBundle:Security:renderLogin')) }}
+    <h1>Se connecter</h1>
+
+
+
+        {{ render(controller('AppBundle:Security:renderLogin')) }}
+
+    <div>
+        <a href="/register"> S'inscrire </a>
+    </div>
+
 {% endblock %}
