@@ -11,10 +11,10 @@
         $this.attr('selected','selected');
         switch ($this.attr("value")){
             case "0":
-                $content.html("<label for='textContent'>Titre de votre question :</label><input id='textContent' type='text'>");
+                $content.html("<label for='textContent'>Titre de votre question :</label><input id='textContent'  name='textContent' type='text'>");
                 break;
             case "1":
-                $content.html("<label for='textContent'>Titre de votre question :</label><input id='textContent' type='text'><div id='answers'><div><input type='text'></div></div><button id='addRadio'>Ajouter une réponse</button>");
+                $content.html("<label for='textContent'>Titre de votre question :</label><input id='textcontent' name='textContent' type='text'><div id='answers'><div><input type='text'></div></div><button id='addRadio'>Ajouter une réponse</button>");
                 break;
             case "2":
                 $content.html("<label for='textContent'>Titre de votre question :</label><input id='textContent' type='text'><div id='answers'><div><input type='text'></div></div><button id='addCheckbox'>Ajouter une réponse</button>");

@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if app.user %}
+        <p>{{ id }}</p>
+        <form action="" method="post">
     <div class="question">
         <h1>Créez votre question</h1>
-        <select autocomplete="off">
+
+        <select autocomplete="off" name="test">
             <option value="" selected disabled hidden>Choisissez votre type de question</option>
             <option value="0">Texte libre</option>
             <option value="1">Choix unique</option>
@@ -16,10 +20,17 @@
         </select>
         <div id="content">
             <label for='textContent'>Titre de votre question :</label>
-            <input id='textContent' type='text'>
+            <input id='textContent' name="textContent" type='text'>
         </div>
-        <button id="addQuestion">Ajouter la question</button>
+        <button id="addQuestion" type="submit">Ajouter la question</button>
     </div>
+        </form>
+    {% else %}
+        <h1>Veuillez vous connecter</h1>
+        <div>
+            <a href="/login"> Se connecter </a>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block stylesheets %}

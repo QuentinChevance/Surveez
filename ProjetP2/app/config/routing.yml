@@ -3,3 +3,7 @@ app:
     type: annotation
 logout:
     path: /logout
+
+acme_hello:
+     path:  /survey/{id}
+     defaults: { _controller: AcmeHelloBundle:Survey:formSurvey }
