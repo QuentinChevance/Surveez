@@ -6,6 +6,19 @@
     <div>
         <button id="createSurvey">Créer un questionnaire</button>
     </div>
+
+    {% if surveys is defined %}
+        {% for survey in surveys %}
+            {% if survey.user.id is defined %}
+                {% if survey.user.id == app.user.id %}
+                    <div>
+                        <span data-id="{{ survey.id }}">{{ survey.title }}</span>
+                        <button id="edit">Editer</button>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}
 
 {% block stylesheets %}
