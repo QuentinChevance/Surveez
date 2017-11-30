@@ -182,3 +182,7 @@ body, html{
     margin-top: 20px;
 }
 
+.main-container {
+    margin-left: 300px;
+    padding: 20px;
+}

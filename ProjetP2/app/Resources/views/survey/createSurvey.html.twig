@@ -1,15 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% if app.user %}
+    <nav>
+        <div class="menu-left">
+            <h1 class="mdc-typography--display3	">Surveez</h1>
+            <div class="user-infos">
+                <p class="user-name">{{ app.user.firstName }} {{ app.user.lastName }}</p>
+                <p class="user-email">{{ app.user.mail }}</p>
+            </div>
+            <div>
+                <ul>
+                    <li><a href=""  class="menu-item">TABLEAU DE BORD</a>
+                        <ul>
+                            <li><a href="/createSurvey"  class="menu-item menu-item--secondary">Créer un questionnaire</a></li>
+                        </ul>
+                    </li>
+                    <li class="mdc-list-divider" role="separator"></li>
+                    <li><a href=#  class="menu-item">COMPTE</a>
+                        <ul>
+                            <li><a href=""  class="menu-item menu-item--secondary">Abonnement</a></li>
+                            <li><a href=""  class="menu-item menu-item--secondary">Factures</a></li>
+                        </ul>
+                    </li>
+                    <li class="mdc-list-divider" role="separator"></li>
+                    <li><a href=""  class="menu-item">ADMINISTRATION</a>
+                        <ul>
+                            <li ><a href=""  class="menu-item menu-item--secondary">Gestion des revenus</a></li>
+                            <li><a href=""  class="menu-item menu-item--secondary">Liste des utilisateurs</a></li>
+                            <li><a href=""  class="menu-item menu-item--secondary">Système d'abonnement</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="disconnect">
+                <button type="button" class="mdc-button mdc-button--raised">SE DÉCONNECTER</button>
+            </div>
+        </div>
+    </nav>
 
-    <h1>Titre de votre Questionnaire</h1>
-    {{ form(form) }}
+    {% if app.user %}
+        <div class="main-container">
+        <h1>Titre de votre Questionnaire</h1>
+        {{ form(form) }}
     {% else %}
         <h1>Veuillez vous connecter</h1>
         <div>
             <a href="/login"> Se connecter </a>
         </div>
+        </div>
+
+
     {% endif %}
 {% endblock %}
 
