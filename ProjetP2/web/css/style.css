@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+}
+
+.container--column {
+    flex-direction: column;
+}
+.card form{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+}

@@ -1,7 +1,32 @@
+{% extends 'base.html.twig' %}
 {% block main %}
-        <h1>S'inscrire</h1>
-        {{ form(form) }}
+        <body class="container container--center">
+        <div class="card">
+                <h2 class="mdc-typography--display3">Surveez - Inscription</h2>
+                {{ form_start(form) }}
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                        {{ form_label(form.firstName) }}
+                        {{ form_widget(form.firstName) }}
+                </div>
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                    {{ form_label(form.lastName) }}
+                    {{ form_widget(form.lastName) }}
+                </div>
+                <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                    {{ form_label(form.mail) }}
+                    {{ form_widget(form.mail) }}
+                </div>
+                <div class="mdc-text-field" id="password" data-mdc-auto-init="MDCTextField">
+                    {{ form_label(form.password.first) }}
+                    {{ form_widget(form.password.first) }}
+                </div>
+                <div class="mdc-text-field" id="password" data-mdc-auto-init="MDCTextField">
+                    {{ form_label(form.password.second) }}
+                    {{ form_widget(form.password.second) }}
+                </div>
 
+            {{ form_end(form) }}
+        </div>
         <div>
                 <a href="/login"> Se connecter </a>
         </div>

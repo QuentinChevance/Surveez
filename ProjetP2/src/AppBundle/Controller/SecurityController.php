@@ -57,7 +57,8 @@ class SecurityController extends Controller
         $user = new User();
 
         $form = $this->createForm(UserType::class, $user);
-        $form->add('Créer', SubmitType::class);
+        $form->add('Inscription', SubmitType::class,array(
+            'attr' => array('class' => 'mdc-button mdc-button--raised')));
 
         $form->handleRequest($request);
         if ($form->isValid()) {
