@@ -5,15 +5,22 @@
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
     {% endif %}
-
+<div class="card">
     <form action="{{ path('login') }}" method="POST">
-        <label for="mail">Login</label>
-        <input type="text" id="mail" name="_username" value="{{ lastUsername }}" />
+        <div class="mdc-text-field mdc-text-field--upgraded mdc-text-field--invalid" data-mdc-auto-init="MDCTextField">
+            <label class="mdc-text-field__label" for="mail" >E-mail</label>
+            <input type="text" id="mail" name="_username" required="required" class="mdc-text-field__input" value="{{ lastUsername }}" />
+        </div>
 
+        <div class="mdc-text-field mdc-text-field--upgraded mdc-text-field--invalid" data-mdc-auto-init="MDCTextField">
+            <label class="mdc-text-field__label" for="password" >Mot de passe</label>
+            <input type="password" id="password" name="_password" required="required" class="mdc-text-field__input" />
+        </div>
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="_password">
-
-        <input type="submit" value="Connexion">
+        <input class="mdc-button mdc-button--raised" type="submit" value="Connexion">
+        <div class="text--center div--softmargin">
+            Vous n'avez pas encore de compte ? <a href="/register"> Inscrivez vous </a>
+        </div>
     </form>
+</div>
 {% endblock %}

@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block main %}
-        <body class="container container--center">
+    <h2 class="mdc-typography--display3 text--center">Surveez</h2>
         <div class="card">
-                <h2 class="mdc-typography--display3">Surveez - Inscription</h2>
                 {{ form_start(form) }}
                 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                         {{ form_label(form.firstName) }}
@@ -25,9 +24,11 @@
                     {{ form_widget(form.password.second) }}
                 </div>
 
+
             {{ form_end(form) }}
+            <div class="text--center div--softmargin">
+                Vous avez déjà un compte ? <a href="/login"> Connexion  </a>
+            </div>
         </div>
-        <div>
-                <a href="/login"> Se connecter </a>
-        </div>
+
 {% endblock %}

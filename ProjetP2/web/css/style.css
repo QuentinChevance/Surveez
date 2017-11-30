@@ -5,9 +5,18 @@
 .container--column {
     flex-direction: column;
 }
+.card{
+    margin:auto;
+}
 .card form{
     width: 500px;
     display: flex;
     flex-direction: column;
     margin:auto;
+}
+.text--center{
+    text-align: center;
+}
+.div--softmargin{
+    margin: 12px;
 }
