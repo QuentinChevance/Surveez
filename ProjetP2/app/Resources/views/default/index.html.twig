@@ -2,24 +2,72 @@
 
 {% block body %}
     {% if app.user %}
-    <h1>Accueil</h1>
-
-    <div>
-        <button id="createSurvey">Créer un questionnaire</button>
-    </div>
-
-    {% if surveys is defined %}
-        {% for survey in surveys %}
-            {% if survey.user.id is defined %}
-                {% if survey.user.id == app.user.id %}
-                    <div>
-                        <span data-id="{{ survey.id }}">{{ survey.title }}</span>
-                        <button id="edit">Editer</button>
+        <div class="container">
+            <nav>
+                <div class="menu-left">
+                    <h1 class="mdc-typography--display3	">Surveez</h1>
+                    <div class="user-infos">
+                        <p class="user-name">{{ app.user.firstName }} {{ app.user.lastName }}</p>
+                        <p class="user-email">{{ app.user.mail }}</p>
                     </div>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+                    <div>
+                        <ul>
+                            <li><a href=""  class="menu-item">TABLEAU DE BORD</a>
+                                <ul>
+                                    <li><a href="/createSurvey"  class="menu-item menu-item--secondary">Créer un questionnaire</a></li>
+                                </ul>
+                            </li>
+                            <li class="mdc-list-divider" role="separator"></li>
+                            <li><a href=#  class="menu-item">COMPTE</a>
+                                <ul>
+                                    <li><a href=""  class="menu-item menu-item--secondary">Abonnement</a></li>
+                                    <li><a href=""  class="menu-item menu-item--secondary">Factures</a></li>
+                                </ul>
+                            </li>
+                            <li class="mdc-list-divider" role="separator"></li>
+                            <li><a href=""  class="menu-item">ADMINISTRATION</a>
+                                <ul>
+                                    <li ><a href=""  class="menu-item menu-item--secondary">Gestion des revenus</a></li>
+                                    <li><a href=""  class="menu-item menu-item--secondary">Liste des utilisateurs</a></li>
+                                    <li><a href=""  class="menu-item menu-item--secondary">Système d'abonnement</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="disconnect">
+                        <button type="button" class="mdc-button mdc-button--raised">SE DÉCONNECTER</button>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="dashboard">
+                <header class="dashboard-title"><h1>Tableau de bord</h1></header>
+                <div class="content">
+                    <h2>Mes questionnaires</h2>
+                    <div class="surveys-list">
+                        {% if surveys is defined %}
+
+                            {% for survey in surveys %}
+                                {% if survey.user.id is defined %}
+                                    {% if survey.user.id == app.user.id %}
+                                        <div class="survey-item">
+                                            <p><span class="survey-title">{{ survey.title }}</span> - Crée le : 30/11/2017</p>
+                                            <p>Nombre de réponses : <span class="nb-answers">0</span> - Modifié le : 01/12/2017</p>
+                                            <div class="icons-list">
+                                                <a href="/survey/{{ survey.id }}"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
+                                                <a href=""><i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+                                                <a href=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     {% else %}
         <h1>Accueil</h1>
 
@@ -31,7 +79,6 @@
     {% endif %}
 
 {% endblock %}
-
 {% block stylesheets %}
-
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
 {% endblock %}
