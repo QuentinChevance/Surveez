@@ -18,14 +18,12 @@ class SurveyController extends Controller
      */
     public function indexAction($id,Request $request)
     {
-        echo "mon id".$id;
 
 
         if(isset($request)){
             $text = $request->get('textContent');
             $value = $request->get('test');
             if($text != null && $value != null){
-                var_dump($text.' '.$value);
                 $repository = $this
                     ->getDoctrine()
                     ->getManager()
