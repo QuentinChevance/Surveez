@@ -6,7 +6,7 @@
  * Time: 15:19
  */
 
-namespace AppBundle\form;
+namespace AppBundle\form\Type;
 
 use AppBundle\Entity\Survey;
 use Symfony\Component\Form\AbstractType;

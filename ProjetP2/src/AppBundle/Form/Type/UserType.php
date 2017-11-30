@@ -6,7 +6,7 @@
  * Time: 16:36
  */
 
-namespace AppBundle\Form\Type;
+namespace AppBundle\form\Type;
 
 
 use AppBundle\Entity\User;
