@@ -1,0 +1,15 @@
+{
+    "compileOnSave": true,
+    "target": "es5",
+    "sourceMap": true,
+    "noImplicitAny": true,
+
+    "module": "commonjs",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "lib":["es6", "dom"],
+        "jsx": "react"
+    },    
+    "exclude": [ "node_modules", "typings" ]
+}
