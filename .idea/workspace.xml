@@ -37,8 +37,8 @@
       <file leaf-file-name="registration_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProjetP2Ruby/app/controllers/registration_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            <state relative-caret-position="51">
+              <caret line="3" column="154" lean-forward="true" selection-start-line="3" selection-start-column="154" selection-end-line="3" selection-end-column="154" />
               <folding />
             </state>
           </provider>
@@ -226,12 +226,12 @@
       <workItem from="1515756368532" duration="763000" />
       <workItem from="1515765482351" duration="68000" />
       <workItem from="1516699803763" duration="665000" />
-      <workItem from="1516700480826" duration="1568000" />
+      <workItem from="1516700480826" duration="2172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21070000" />
+    <option name="totallyTimeSpent" value="21674000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -595,8 +595,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ProjetP2Ruby/app/controllers/registration_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        <state relative-caret-position="51">
+          <caret line="3" column="154" lean-forward="true" selection-start-line="3" selection-start-column="154" selection-end-line="3" selection-end-column="154" />
           <folding />
         </state>
       </provider>
