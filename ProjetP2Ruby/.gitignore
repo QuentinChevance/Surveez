@@ -16,5 +16,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/.bundle
+/vendor/bundle
 
 .byebug_history
