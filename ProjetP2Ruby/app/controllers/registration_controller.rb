@@ -1,7 +1,10 @@
 class RegistrationController < ApplicationController
   def create
 
-    user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password],firstName:params[:firstName],lastName:paramas[:lastName],nbSurvey:params[nbSurvey],status:params[nbSurvey],company:params[company])
+
+    user = User.new(:email => params[:email],:password => params[:password],:password_confirmation => params[:password],:firstName => params[:firstName],:lastName => params[:lastName],:nbSurvey => params[:nbSurvey],:status => params[:status],:company => params[:company])
+    user.save
+    # user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password],firstName:params[:firstName],lastName:params[:lastName],nbSurvey:params[:nbSurvey],status:params[:status],company:params[:company])
 
     if user
       render json: user.as_json(only: [:id, :email]), status: :created
