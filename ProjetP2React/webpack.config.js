@@ -1,7 +1,7 @@
 module.exports = {
     context: __dirname,
     entry: {
-        exercice10: "./src/index.tsx"
+        index: "./src/index.js"
         },
     devtool: "source-map",
     output: {
@@ -14,26 +14,10 @@ module.exports = {
                 ],
         
                 // Add '.ts' and '.tsx' as resolvable extensions.
-                extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".css",".html"]
+                extensions: [".webpack.js", ".web.js", ".js", ".css",".html"]
             },
     module: {
         rules: [
-            {
-                test: /\.ts$/,
-                use:[
-                    {
-                        loader:"awesome-typescript-loader"
-                    }
-                ]
-            },
-            {
-                test: /\.tsx$/,
-                use:[
-                    {
-                        loader:"awesome-typescript-loader"
-                    }
-                ]
-            },
             {
                 test: /\.css$/,
                 use: [    

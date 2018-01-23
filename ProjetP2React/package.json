@@ -1,5 +1,5 @@
 {
-  "name": "bateaux",
+  "name": "P2_Ozytis",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,8 @@
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "rmwc": "^1.0.2"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
