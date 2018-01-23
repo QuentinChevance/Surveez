@@ -1,0 +1,2 @@
+C:/Ruby24-x64/bin/ruby.exe extconf.rb
+C:/Ruby24-x64/bin/ruby.exe: invalid option -D  (-h will show valid options) (RuntimeError)
