@@ -12,6 +12,8 @@ class RegistrationController < ApplicationController
   end
 
   def destroy
+    user = user.find(id:params[:id])
+    user.destroy
 
   end
 end
