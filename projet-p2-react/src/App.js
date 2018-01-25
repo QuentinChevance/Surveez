@@ -3,12 +3,12 @@ import '../node_modules/material-components-web/dist/material-components-web';
 import mdcAutoInit from '@material/auto-init';
 import {MDCTextField} from '@material/textfield';
 
-import './general.js';
 import './App.css';
 
 class App extends React.Component {
     componentDidMount(){
         mdcAutoInit.register('MDCTextField', MDCTextField);
+        mdcAutoInit();
     }
     render() {
         return (
