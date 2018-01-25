@@ -1,0 +1,175 @@
+:root {
+    --mdc-theme-primary: #2196F3;
+}
+
+body, html {
+    margin:0;
+}
+
+.container{
+    display: flex;
+}
+
+.container--column {
+    flex-direction: column;
+}
+.card{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+}
+
+.menu-left {
+    background-color: #1976D2;
+    width:300px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.menu-left h1 {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.menu-left .user-name {
+    margin: 0;
+}
+
+.menu-left ul {
+    list-style-type: none;
+    margin:10px;
+
+}
+
+.menu-left li {
+    margin:10px;
+}
+
+.menu-left .mdc-list-divider {
+    border-color: #2196F3;
+}
+
+.menu-item {
+    text-decoration:none;
+    color:white;
+    transition: 0.25s ease;
+}
+
+
+.menu-item:hover, .menu-item:focus {
+    background-color:#2196F3;
+}
+
+.menu-item:active {
+    background-color: #64B5F6;
+}
+
+.user-infos {
+    text-align: center;
+}
+
+.user-infos .user-name {
+    font-weight: bold;
+}
+
+.disconnect {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.dashboard {
+    width: 100%;
+    background-color: white;
+    margin-left: 300px;
+    height: 100%
+}
+.dashboard-title {
+    display: flex;
+    height: 50px;
+    background-color: #E6E6E6;
+    justify-content: center;
+    align-items: center;
+    color: #2196F3;
+}
+
+.dashboard .content {
+    background-color: white;
+    height: auto;
+    padding: 0 40px;
+}
+
+.creerQuestionnaire button {
+    display: block;
+    margin-top: 20px;
+}
+
+.surveys-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.survey-item {
+    box-sizing: border-box;
+    width: 45%;
+    margin-bottom: 40px;
+    padding:10px;
+    border: solid 2px #2196F3;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.survey-title{
+    font-weight:bold;
+}
+
+.nb-answers{
+    font-weight:bold;
+}
+
+.icons-list {
+    display: flex;
+    justify-content: center;
+}
+
+.icons-list a {
+    margin: 0 10px;
+    color: #2196F3;
+    text-decoration: none;
+}
+
+.menu-left ul, .menu-left li {
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: block;
+    padding: 10px 0 10px 10px;
+}
+
+.menu-item--secondary {
+    padding-left: 30px;
+}
+
+.home button {
+    margin-top: 20px;
+}
+/*.surveys-list {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*.survey-item:last-child {*/
+/*    align-self*/
+/*}*/
+
