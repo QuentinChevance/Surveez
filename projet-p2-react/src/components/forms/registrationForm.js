@@ -21,8 +21,23 @@ class registrationForm extends Component {
     }
 
     onStateChange = (event) => {
-        console.log("on est là");
+        // let target = event.target;
+        // target.setCustomValidity("");
+        // if(!target.checkValidity()){
+        //     console.log("on est ici: ",event.target.id);
+        //     switch (event.target.id){
+        //         case "email":
+        //             console.log("Votre e-mail est invalide");
+        //             break;
+        //         case "firstName":
+        //             console.log("Votre prénom est requis");
+        //             break;
+        //         default:
+        //     }
+        // }
         this.setState({[event.target.id]:event.target.value});
+        console.log("on est là",event.target);
+
     };
 
     submit = () => {
@@ -50,15 +65,15 @@ class registrationForm extends Component {
                 <div className="card">
                     <h2 className="mdc-typography--display3">Surveez</h2>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="email" className="mdc-text-field__input" onChange={this.onStateChange} id="email"/>
+                        <input type="email" className="mdc-text-field__input" onChange={this.onStateChange} id="email" required="required"/>
                         <label htmlFor="email" className="mdc-text-field__label" >E-mail</label>
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" className="mdc-text-field__input" onChange={this.onStateChange} id="firstName"/>
+                        <input type="text" className="mdc-text-field__input" onChange={this.onStateChange} id="firstName" required="required"/>
                         <label htmlFor="firstName" className="mdc-text-field__label">Prénom</label>
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" className="mdc-text-field__input" onChange={this.onStateChange} id="lastName"/>
+                        <input type="text" className="mdc-text-field__input" onChange={this.onStateChange} id="lastName" required="required"/>
                         <label htmlFor="lastName" className="mdc-text-field__label">Nom</label>
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
@@ -66,12 +81,12 @@ class registrationForm extends Component {
                         <label htmlFor="company" className="mdc-text-field__label">Entreprise</label>
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="password" className="mdc-text-field__input" onChange={this.onStateChange} id="password"/>
+                        <input type="password" className="mdc-text-field__input" onChange={this.onStateChange} id="password" required="required" minLength="6" pattern="(?=.*[A-Z])(?=.*\d).*"/>
                         <label htmlFor="password" className="mdc-text-field__label">Mot de passe</label>
 
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="password" className="mdc-text-field__input" onChange={this.onStateChange} id="passwordconfirm"/>
+                        <input type="password" className="mdc-text-field__input" onChange={this.onStateChange} id="passwordconfirm" required="required"/>
                         <label htmlFor="passwordconfirm" className="mdc-text-field__label">Confirmez votre mot de passe</label>
                     </div>
 
