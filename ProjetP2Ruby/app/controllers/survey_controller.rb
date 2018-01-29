@@ -1,8 +1,14 @@
 class SurveyController < ApplicationController
 
   def index
-    @surveys = Survey.order("created_at DESC")
-    render json: @surveys
+
+    if params.has_key?(:user_id)
+      @survey = Survey.where(user_id: params[:user_id]).order("created_at DESC")
+      render json: @survey
+    else
+      @surveys = Survey.order("created_at DESC")
+      render json: @surveys
+    end
   end
 
   def create
@@ -21,20 +27,19 @@ class SurveyController < ApplicationController
 
     if Survey.exists?(params[:id])
       @survey = Survey.find(params[:id])
-      if params.has_key?(:closeDate)
+      if params.has_key?(:title)
         @survey.title = params[:title]
-        @survey.scope = params[:scope]
-        @survey.isActive = params[:isActive]
-        @survey.closeDate = params[:closeDate]
-        @survey.save
-      else
-        @survey.title = params[:title]
-        @survey.scope = params[:scope]
-        @survey.isActive = params[:isActive]
-        @survey.save
-
-
       end
+      if params.has_key?(:scope)
+        @survey.scope = params[:scope]
+      end
+      if params.has_key?(:isActive)
+        @survey.isActive = params[:isActive]
+      end
+      if params.has_key?(:closeDate)
+        @survey.closeDate = params[:closeDate]
+      end
+      @survey.save
     else
       head(:unauthorized)
     end
