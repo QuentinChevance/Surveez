@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :session, only: [:create, :destroy]
+  devise_for :users, defaults: { format: :json }
+  resources :session, only: [:create, :destroy, :index]
   resources :registration, only: [:index, :create, :destroy, :update]
   resources :survey, only: [:index, :create, :destroy, :update]
   resources :question, only: [:index,:create, :destroy, :update]
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,5 +1,6 @@
 class SurveyController < ApplicationController
 
+
   def index
 
     if params.has_key?(:user_id)

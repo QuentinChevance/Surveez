@@ -1,5 +1,7 @@
 class RegistrationController < ApplicationController
 
+  skip_before_action :authenticate_user!,  :only => [:create]
+
   def index
     if params.has_key?(:id)
       @user = User.find(params[:id])
