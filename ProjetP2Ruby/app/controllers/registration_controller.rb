@@ -1,8 +1,16 @@
 class RegistrationController < ApplicationController
 
+  skip_before_action :authenticate_user!,  :only => [:create]
+
   def index
+    if params.has_key?(:id)
+      @user = User.find(params[:id])
+      render json: @user
+    else
     @user = User.all
     render json: @user
+    end
+
   end
   def create
 
@@ -46,12 +54,28 @@ class RegistrationController < ApplicationController
 
     if User.exists?(params[:id])
       @user = User.find(params[:id])
+      if params.has_key?(:email)
         @user.email = params[:email]
+      end
+      if params.has_key?(:password)
         @user.password = params[:password]
-        @user.password_confirmation = params[:password_confirmation]
+        @user.password_confirmation = params[:password]
+      end
+      if params.has_key?(:firstName)
         @user.firstName = params[:firstName]
+      end
+      if params.has_key?(:lastName)
         @user.lastName = params[:lastName]
+      end
+      if params.has_key?(:company)
         @user.company = params[:company]
+      end
+      if params.has_key?(:nbSurvey)
+        @user.nbSurvey = params[:nbSurvey]
+      end
+      if params.has_key?(:status)
+        @user.status = params[:status]
+      end
         @user.save
     else
       head(:unauthorized)

@@ -1,5 +1,6 @@
 class QuestionController < ApplicationController
 
+
   def index
     @questions = Question.order("created_at DESC")
     render json: @questions
@@ -7,8 +8,6 @@ class QuestionController < ApplicationController
 
   def create
     @question = Question.new(:title => params[:title],:typeQuestion => params[:typeQuestion],:format => params[:format],:file => params[:file],:parent_id => params[:parent_id],:survey_id => params[:survey_id])
-
-
 
     if @question.save
       render json: @question
@@ -18,21 +17,25 @@ class QuestionController < ApplicationController
   end
 
   def update
+    if params.has_key?(:id)
+
 
     if Question.exists?(params[:id])
       @question = Question.find(params[:id])
-      if params.has_key?(:closeDate)
+      if params.has_key?(:title)
         @question.title = params[:title]
-        @question.scope = params[:scope]
-        @question.isActive = params[:isActive]
-        @question.closeDate = params[:closeDate]
-        @question.save
-      else
-        @question.title = params[:title]
-        @question.scope = params[:scope]
-        @question.isActive = params[:isActive]
-        @question.save
       end
+      if params.has_key?(:parent_id)
+        @question.parent_id = params[:parent_id]
+      end
+      if params.has_key?(:file)
+        @question.file = params[:file]
+      end
+
+      @question.save
+    else
+      head(:unauthorized)
+    end
     else
       head(:unauthorized)
     end
