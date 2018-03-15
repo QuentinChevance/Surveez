@@ -2,6 +2,10 @@
     --mdc-theme-primary: #2196F3;
 }
 
+.truc {
+    width: 100%;
+}
+
 body, html {
     margin:0;
 }

@@ -34,7 +34,7 @@ module ProjetP2Ruby
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'http://localhost:3000'
-        resource '/registration*', :headers => :any, :methods => %i( post )
+        resource '/*', :headers => :any, :methods => %i( post )
       end
     end
   end
