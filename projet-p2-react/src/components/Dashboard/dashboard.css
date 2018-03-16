@@ -1,0 +1,49 @@
+.dashboard {
+    width: 85%;
+    background-color: white;
+    margin-left: 300px;
+    height: 100%
+}
+.dashboard-title {
+    display: flex;
+    height: 50px;
+    background-color: #E6E6E6;
+    justify-content: center;
+    align-items: center;
+    color: #2196F3;
+}
+
+.dashboard .content {
+    background-color: white;
+    height: auto;
+    padding: 0 40px;
+}
+.surveys-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.survey-item {
+    box-sizing: border-box;
+    width: 45%;
+    margin-bottom: 40px;
+    padding:10px;
+    border: solid 2px #2196F3;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.survey-title{
+    font-weight:bold;
+}
+.icons-list {
+    display: flex;
+    justify-content: center;
+}
+
+.icons-list a {
+    margin: 0 10px;
+    color: #2196F3;
+    text-decoration: none;
+}
