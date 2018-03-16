@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129100130) do
+ActiveRecord::Schema.define(version: 20180315152039) do
 
   create_table "answers", force: :cascade do |t|
     t.string "content"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20180129100130) do
     t.string "title"
     t.string "url"
     t.string "typeSurvey"
-    t.string "scope"
+    t.boolean "scope"
     t.date "publishDate"
     t.date "closeDate"
     t.boolean "isActive"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20180129100130) do
     t.integer "nbSurvey"
     t.integer "status"
     t.string "company"
+    t.string "authentication_token", limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
