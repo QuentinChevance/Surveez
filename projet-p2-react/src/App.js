@@ -8,18 +8,21 @@ import {Header} from "./components/Header/Header";
 
 class App extends React.Component {
     constructor(props){
+
         super(props);
-        this.state = {
-            isLoggedIn: this.props.isLoggedIn
-        }
+        localStorage.setItem("isLoggedIn","false");
     }
+
+    componentWillReceiveProps(){
+        this.forceUpdate();
+    }
+
     render() {
         return (
-            <div>
-                <Authentication />
+            <div ref="myRef">
                 { localStorage.getItem("isLoggedIn") === "true"
                     ?(<Header/>)
-                    : ""
+                    : (<Authentication />)
                 }
             </div>
         );
