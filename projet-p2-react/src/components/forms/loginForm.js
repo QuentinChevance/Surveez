@@ -36,8 +36,11 @@ class loginForm extends Component {
             if(response.statusText === "Created"){
                 localStorage.setItem("isLoggedIn",'true');
             }
-            console.log("app: ",App);
             App.state = "logged";
+            // let app = App;
+            //
+            // console.log("app: ",app);
+            // console.log("appupdate: ",app.updater.isMounted());
         }).catch(error => console.log(error))
     };
 
