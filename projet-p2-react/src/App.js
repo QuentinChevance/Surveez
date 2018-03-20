@@ -18,7 +18,7 @@ class App extends React.Component {
         localStorage.setItem("isLoggedIn","false");
     }
 
-    componentWillMount(){
+    checkConnection(){
         axios.get('http://localhost:4000/session',{
             headers: {
                 Authorization: localStorage.getItem("auth_token")
@@ -31,26 +31,26 @@ class App extends React.Component {
         })
     }
 
+    componentWillMount(){
+        this.checkConnection();
+    }
+
     handler() {
-        axios.get('http://localhost:4000/session',{
-            headers: {
-                Authorization: localStorage.getItem("auth_token")
-            }
-            
-        }).then(response => {
-            if(response.status === 200){
-                this.setState({"isConnected":true});
-            }
-        })
+        this.checkConnection();
         console.log("update");
+    }
+
+    disconnect = () => {
+        localStorage.removeItem("auth_token");
+        this.setState({"isConnected":false});
     }
 
     render() {
         return (
-            <div ref="myRef">
+            <div>
                 {                     
                     this.state.isConnected
-                    ?([<Header/>,<Dashboard/>])
+                    ?([<Header disconnect={this.disconnect}/>,<Dashboard/>])
                     : (<Authentication handler={this.handler}/>)
                 }
             </div>
