@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   skip_before_action :authenticate_user!,  :only => [:create, :destroy]
 
   def index
-    user = User.where(authentication_token: request.headers[:Authorization])
+    user = User.where(authentication_token: request.headers[:Authorization]).first
 
     if user
       render :json=> {:success=>true, :auth_token=>user.authentication_token, :id=>user.id}

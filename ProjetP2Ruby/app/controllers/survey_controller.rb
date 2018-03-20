@@ -14,12 +14,16 @@ class SurveyController < ApplicationController
 
   def create
 
-    @survey = Survey.new(:title => params[:title],:url => params[:url],:typeSurvey => params[:typeSurvey],:scope => params[:scope],:publishDate => params[:publishDate],:isActive => params[:isActive],:user_id => params[:user_id])
+    @survey = Survey.new(:title => params[:title],:typeSurvey => params[:typeSurvey],:scope => params[:scope],:publishDate => params[:publishDate],:isActive => params[:isActive],:user_id => params[:user_id])
+    o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
+    @string = (0...50).map { o[rand(o.length)] }.join
+
+    @survey.url = @string
 
     if @survey.save
       render json: @survey
     else
-      render json: @survey.errors, status: :unprocessable_entity
+      render json: @survey.errors, status: 201
     end
 
   end
