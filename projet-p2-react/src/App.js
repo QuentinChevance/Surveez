@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../node_modules/material-components-web/dist/material-components-web';
 
 import Authentication from "./components/forms/authentication";
-
+import axios from 'axios';
 import './App.css';
 import {Header} from "./components/Header/Header";
 
@@ -10,16 +10,46 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            isLoggedIn: this.props.isLoggedIn
+            isConnected : false
         }
+        this.handler = this.handler.bind(this)
+        localStorage.setItem("isLoggedIn","false");
     }
+
+    componentWillMount(){
+        axios.get('http://localhost:4000/session',{
+            headers: {
+                Authorization: localStorage.getItem("auth_token")
+            }
+
+        }).then(response => {
+            if(response.status === 200){
+                this.setState({"isConnected":true});
+            }
+        })
+    }
+
+    handler() {
+        axios.get('http://localhost:4000/session',{
+            headers: {
+                Authorization: localStorage.getItem("auth_token")
+            }
+            
+        }).then(response => {
+            if(response.status === 200){
+                this.setState({"isConnected":true});
+            }
+        })
+        console.log("update");
+    }
+
     render() {
         return (
-            <div>
-                <Authentication />
-                { localStorage.getItem("isLoggedIn") === "true"
+            <div ref="myRef">
+                {                     
+                    this.state.isConnected
                     ?(<Header/>)
-                    : ""
+                    : (<Authentication handler={this.handler}/>)
                 }
             </div>
         );

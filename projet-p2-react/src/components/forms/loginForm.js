@@ -8,6 +8,7 @@ import App from "../../App";
 class loginForm extends Component {
     constructor(props){
         super(props);
+        console.log("loginProps: ",this.props);
         this.state = {
             email: this.props.email,
             password: this.props.password
@@ -23,6 +24,7 @@ class loginForm extends Component {
     };
 
     submit = () => {
+        let self = this;
         axios.post(
             `http://localhost:4000/session`,
             {
@@ -33,10 +35,11 @@ class loginForm extends Component {
         ).then(response => {
             // Update the local state with the received data after the PUT action (and set them as data is for index)
             console.log("response",response)
-            if(response.statusText === "Created"){
-                localStorage.setItem("isLoggedIn",'true');
+            if(response.status === 200){
+                localStorage.setItem("auth_token",response.data.auth_token);
+                console.log("props: ",self.props);
+                self.props.handler();
             }
-            console.log("app: ",App);
             App.state = "logged";
         }).catch(error => console.log(error))
     };
