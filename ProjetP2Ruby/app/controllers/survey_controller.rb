@@ -14,7 +14,7 @@ class SurveyController < ApplicationController
 
   def create
 
-    @survey = Survey.new(:title => params[:title],:url => params[:url],:typeSurvey => params[:typeSurvey],:scope => params[:scope],:publishDate => params[:publishDate],:isActive => params[:isActive],:user_id => params[:user_id])
+    @survey = Survey.new(:title => params[:title],:typeSurvey => params[:typeSurvey],:scope => params[:scope],:publishDate => params[:publishDate],:isActive => params[:isActive],:user_id => params[:user_id])
 
     if @survey.save
       render json: @survey
