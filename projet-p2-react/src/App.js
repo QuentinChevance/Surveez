@@ -5,6 +5,8 @@ import Authentication from "./components/forms/authentication";
 import axios from 'axios';
 import './App.css';
 import {Header} from "./components/Header/Header";
+import {Dashboard} from "./components/Dashboard/dashboard";
+import './components/Dashboard/dashboard.css';
 
 class App extends React.Component {
     constructor(props){
@@ -48,7 +50,7 @@ class App extends React.Component {
             <div ref="myRef">
                 {                     
                     this.state.isConnected
-                    ?(<Header/>)
+                    ?([<Header/>,<Dashboard/>])
                     : (<Authentication handler={this.handler}/>)
                 }
             </div>
