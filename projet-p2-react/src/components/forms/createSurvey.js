@@ -19,15 +19,15 @@ class createSurvey extends Component {
         mdcAutoInit();
     }
 
-    onStateChange = (event) => {
+    onStateChange(event){
         this.setState({[event.target.id]:event.target.value});
     };
 
-    onChangeCkBox = (event) => {
+    onChangeCkBox(event){
         this.setState({[event.target.id]:event.target.checked});
     };
 
-    submit = () => {
+    submit(){
         console.log("scope: ",this.state.scope);
         axios.get(`http://localhost:4000/session`,{
             headers: {
@@ -66,7 +66,7 @@ class createSurvey extends Component {
         return (
             <div className="card">
                 <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                    <input type="text" className="mdc-text-field__input" onChange={this.onStateChange} id="title"/>
+                    <input type="text" className="mdc-text-field__input" onChange={this.onStateChange.bind(this)} id="title"/>
                     <label htmlFor="title" className="mdc-text-field__label" >Titre </label>
                 </div>
 
@@ -74,7 +74,7 @@ class createSurvey extends Component {
                     <div className="mdc-checkbox">
                         <input type="checkbox"
                                id="scope"
-                               className="mdc-checkbox__native-control" checked={this.state.scope} onChange={this.onChangeCkBox}/>
+                               className="mdc-checkbox__native-control" checked={this.state.scope} onChange={this.onChangeCkBox.bind(this)}/>
                         <div className="mdc-checkbox__background">
                             <svg className="mdc-checkbox__checkmark"
                                  viewBox="0 0 24 24">
@@ -89,7 +89,7 @@ class createSurvey extends Component {
 
                     <label htmlFor="scope">Privé</label>
                 </div>
-                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit}>
+                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
                     Créer
                 </button>
             </div>
