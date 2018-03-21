@@ -10,7 +10,7 @@ export class Header extends Component {
         super(props);
         console.log("headerprops: ",this.props);
     }
-    disconnectUser = () => {
+    disconnectUser() {
         this.props.disconnect();
     }
     render() {
@@ -62,7 +62,7 @@ export class Header extends Component {
                                 </li>
                             </ul>
                         </nav>
-                        <button className="mdc-button" onClick={this.disconnectUser}>Se déconnecter</button>
+                        <button className="mdc-button" onClick={this.disconnectUser.bind(this)}>Se déconnecter</button>
                     </header>
                     <Route exact path="/create-survey" component={CreateSurvey}/>
                 </div>
