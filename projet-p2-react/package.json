@@ -3,11 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.17.1",
-    "material-components-web": "^0.28.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0",
     "@material/animation": "^0.25.0",
     "@material/auto-init": "^0.25.0",
     "@material/base": "^0.24.0",
@@ -37,12 +32,32 @@
     "@material/textfield": "^0.26.0",
     "@material/theme": "^0.25.0",
     "@material/toolbar": "^0.25.0",
-    "@material/typography": "^0.3.0"
+    "@material/typography": "^0.3.0",
+    "axios": "^0.17.1",
+    "material-components-web": "^0.28.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0",
+    "rmwc": "^1.4.0"
   },
   "scripts": {
+    "build-wp": "webpack --mode production",
+    "start-wp": "webpack-dev-server --open --mode production",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "sass-loader": "^6.0.7"
   }
 }

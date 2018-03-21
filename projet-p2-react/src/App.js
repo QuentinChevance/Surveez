@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../node_modules/material-components-web/dist/material-components-web';
+import '../node_modules/material-components-web/dist/material-components-web.min.css';
 
 import Authentication from "./components/forms/authentication";
 import axios from 'axios';
@@ -40,7 +40,7 @@ class App extends React.Component {
         console.log("update");
     }
 
-    disconnect = () => {
+    disconnect (){
         localStorage.removeItem("auth_token");
         this.setState({"isConnected":false});
     }
@@ -50,7 +50,7 @@ class App extends React.Component {
             <div>
                 {                     
                     this.state.isConnected
-                    ?([<Header disconnect={this.disconnect}/>,<Dashboard/>])
+                    ?([<Header disconnect={this.disconnect.bind(this)}/>,<Dashboard/>])
                     : (<Authentication handler={this.handler}/>)
                 }
             </div>
