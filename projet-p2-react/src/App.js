@@ -50,7 +50,7 @@ class App extends React.Component {
             <div>
                 {                     
                     this.state.isConnected
-                    ?([<Header disconnect={this.disconnect.bind(this)}/>,<Dashboard/>])
+                    ?(<Header disconnect={this.disconnect.bind(this)}/>)
                     : (<Authentication handler={this.handler}/>)
                 }
             </div>

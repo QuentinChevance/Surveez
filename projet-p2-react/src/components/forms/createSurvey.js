@@ -3,6 +3,7 @@ import mdcAutoInit from '@material/auto-init';
 import {MDCTextField} from '@material/textfield';
 import axios from 'axios';
 import App from "../../App";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 class createSurvey extends Component {
@@ -90,7 +91,7 @@ class createSurvey extends Component {
                     <label htmlFor="scope">Privé</label>
                 </div>
                 <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
-                    Créer
+                    <Link to="/create-question">Créer</Link>
                 </button>
             </div>
 
