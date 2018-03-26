@@ -74,7 +74,7 @@ class registrationForm extends Component {
         }
         if (validForm && this.state.password === this.state.passwordconfirm){
             axios.post(
-                `http://localhost:4000/registration`,
+                `http://`+window.location.hostname+`:4000/registration`,
                 {
                     email: this.state.email,
                     firstName: this.state.firstName,

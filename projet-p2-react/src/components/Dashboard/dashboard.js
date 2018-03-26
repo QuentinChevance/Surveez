@@ -12,14 +12,14 @@ export class Dashboard extends Component{
     }
     // axios({ method: 'POST', url: 'you http api here', headers: {autorizacion: localStorage.token}
     componentDidMount() {
-        axios.get(`http://localhost:4000/session`,{
+        axios.get(`http://`+window.location.hostname+`:4000/session`,{
             headers: {
                 Authorization: localStorage.getItem("auth_token")
             }
         }).then(response => {
             this.setState({"user_id": response.data.id});
             console.log("userid: ",this.state.user_id);
-            axios.get('http://localhost:4000/survey',
+            axios.get(`http://`+window.location.hostname+':4000/survey',
             {
                 headers: {
                     'Authorization': 'sFx-Hkwkyzz2aSGyzAgB',

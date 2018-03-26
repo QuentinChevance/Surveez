@@ -26,7 +26,7 @@ class loginForm extends Component {
     submit(){
         let self = this;
         axios.post(
-            `http://localhost:4000/session`,
+            `http://`+window.location.hostname+`:4000/session`,
             {
                 email: this.state.email,
                 password: this.state.password
@@ -58,7 +58,7 @@ class loginForm extends Component {
                     <label htmlFor="password" className="mdc-text-field__label">Mot de passe</label>
 
                 </div>
-                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit}>
+                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
                     Connexion
                 </button>
             </div>
