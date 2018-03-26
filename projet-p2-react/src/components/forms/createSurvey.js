@@ -90,7 +90,7 @@ class createSurvey extends Component {
 
                     <label htmlFor="scope">Privé</label>
                 </div>
-                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit}>
+                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
                     <Link to="/create-question">Créer</Link>
                 </button>
             </div>

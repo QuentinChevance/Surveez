@@ -18,20 +18,20 @@ class freeTextQuestion extends Component{
             mdcAutoInit();
         }
 
-        onStateChange = (event) => {
+        onStateChange(event){
             this.setState({[event.target.id]:event.target.value});
             console.log("on est là",event.target);
 
         };
 
-        displayErr = (msgErr, para, target) => {
+        displayErr(msgErr, para, target){
             if(!target.nextElementSibling.classList.contains("customError")){
                 target.nextElementSibling.innerHTML = msgErr;
                 target.nextElementSibling.classList.add("customError")
             }
         };
 
-        onBlur = (event) => {
+        onBlur(event){
             let para = document.createElement('p');
             let target = event.target;
             if(!target.checkValidity()){
@@ -44,7 +44,7 @@ class freeTextQuestion extends Component{
             }
         };
 
-        submit = (headers) => {
+        submit(headers){
             let validForm = true;
             for(let i =0; i<document.getElementsByClassName("mdc-text-field__input").length;i++){
                 if(!document.getElementsByClassName("mdc-text-field__input")[i].checkValidity()){
@@ -94,11 +94,11 @@ class freeTextQuestion extends Component{
                     <div className="card" id="registrationForm">
 
                         <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                            <input type="text" className="mdc-text-field__input" value={this.state.title} onChange={this.onStateChange} id="title" required="required" onBlur={this.onBlur}/>
+                            <input type="text" className="mdc-text-field__input" value={this.state.title} onChange={this.onStateChange.bind(this)} id="title" required="required" onBlur={this.onBlur.bind(this)}/>
                             <label htmlFor="title" className="mdc-text-field__label" data-text="question">Votre question :</label>
                         </div>
 
-                        <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit}>
+                        <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
                             Ajouter
                         </button>
                     </div>

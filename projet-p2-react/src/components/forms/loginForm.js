@@ -59,7 +59,7 @@ class loginForm extends Component {
                     <label htmlFor="password" className="mdc-text-field__label">Mot de passe</label>
 
                 </div>
-                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit}>
+                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
                     <Link to="/dashboard">Connexion</Link>
                 </button>
             </div>
