@@ -22,7 +22,7 @@ class registrationForm extends Component {
         mdcAutoInit();
     }
 
-    onStateChange = (event) => {
+    onStateChange(event){
 
 
         this.setState({[event.target.id]:event.target.value});
@@ -30,30 +30,30 @@ class registrationForm extends Component {
 
     };
 
-    displayErr = (msgErr, para, target) => {
+    displayErr(msgErr, para, target){
         if(!target.nextElementSibling.classList.contains("customError")){
             target.nextElementSibling.innerHTML = msgErr;
             target.nextElementSibling.classList.add("customError")
         }
     };
 
-    onBlur = (event) => {
+    onBlur(event){
         let para = document.createElement('p');
         let target = event.target;
         if(!target.checkValidity()){
             console.log("on est ici: ",event.target.id);
             switch (event.target.id){
                 case "email":
-                    this.displayErr('Votre e-mail est invalide',para,target);
+                    this.displayErr('Votre e-mail est invalide',para,target).bind(this);
                     break;
                 case "firstName":
-                    this.displayErr('Votre prénom est requis',para,target);
+                    this.displayErr('Votre prénom est requis',para,target).bind(this);
                     break;
                 case "lastName":
-                    this.displayErr('Votre nom est requis',para,target);
+                    this.displayErr('Votre nom est requis',para,target).bind(this);
                     break;
                 case "password":
-                    this.displayErr('Votre mot de passe doit comporter au minimum 6 caractères avec au moins 1 chiffre et 1 majuscule',para,target);
+                    this.displayErr('Votre mot de passe doit comporter au minimum 6 caractères avec au moins 1 chiffre et 1 majuscule',para,target).bind(this);
                     break;
                 default:
             }
@@ -63,7 +63,7 @@ class registrationForm extends Component {
         }
     };
 
-    submit = () => {
+    submit(){
         let validForm = true;
         for(let i =0; i<document.getElementsByClassName("mdc-text-field__input").length;i++){
             if(!document.getElementsByClassName("mdc-text-field__input")[i].checkValidity()){
@@ -74,7 +74,7 @@ class registrationForm extends Component {
         }
         if (validForm && this.state.password === this.state.passwordconfirm){
             axios.post(
-                `http://localhost:4000/registration`,
+                `http://`+window.location.hostname+`:4000/registration`,
                 {
                     email: this.state.email,
                     firstName: this.state.firstName,
@@ -114,37 +114,37 @@ class registrationForm extends Component {
             <div className="container container--center home">
                 <div className="card" id="registrationForm">
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="email" className="mdc-text-field__input" value={this.state.email} onChange={this.onStateChange} id="email" required="required" onBlur={this.onBlur}/>
+                        <input type="email" className="mdc-text-field__input" value={this.state.email} onChange={this.onStateChange.bind(this)} id="email" required="required" onBlur={this.onBlur}/>
                         <label htmlFor="email" className="mdc-text-field__label" data-text="E-mail">E-mail</label>
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" className="mdc-text-field__input" value={this.state.firstName} onChange={this.onStateChange} id="firstName" required="required" onBlur={this.onBlur}/>
+                        <input type="text" className="mdc-text-field__input" value={this.state.firstName} onChange={this.onStateChange.bind(this)} id="firstName" required="required" onBlur={this.onBlur}/>
                         <label htmlFor="firstName" className="mdc-text-field__label" data-text="Prénom">Prénom</label>
                     </div>
 
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" className="mdc-text-field__input" value={this.state.lastName} onChange={this.onStateChange} id="lastName" required="required" onBlur={this.onBlur}/>
+                        <input type="text" className="mdc-text-field__input" value={this.state.lastName} onChange={this.onStateChange.bind(this)} id="lastName" required="required" onBlur={this.onBlur}/>
                         <label htmlFor="lastName" className="mdc-text-field__label" data-text="Nom">Nom</label>
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" className="mdc-text-field__input" value={this.state.company} onChange={this.onStateChange} id="company"/>
+                        <input type="text" className="mdc-text-field__input" value={this.state.company} onChange={this.onStateChange.bind(this)} id="company"/>
                         <label htmlFor="company" className="mdc-text-field__label">Entreprise</label>
                     </div>
 
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="password" className="mdc-text-field__input" value={this.state.password} onChange={this.onStateChange} id="password" required="required" minLength="6" pattern="(?=.*[A-Z])(?=.*\d).*" onBlur={this.onBlur}/>
+                        <input type="password" className="mdc-text-field__input" value={this.state.password} onChange={this.onStateChange.bind(this)} id="password" required="required" minLength="6" pattern="(?=.*[A-Z])(?=.*\d).*" onBlur={this.onBlur}/>
                         <label htmlFor="password" className="mdc-text-field__label" data-text="Mot de passe">Mot de passe</label>
 
                     </div>
 
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="password" className="mdc-text-field__input" value={this.state.passwordconfirm} onChange={this.onStateChange} id="passwordconfirm" required="required"/>
+                        <input type="password" className="mdc-text-field__input" value={this.state.passwordconfirm} onChange={this.onStateChange.bind(this)} id="passwordconfirm" required="required"/>
                         <label htmlFor="passwordconfirm" className="mdc-text-field__label">Confirmez votre mot de passe</label>
                     </div>
                     <p>Les champs marqués par un astérisque (*) sont obligatoires.</p>
 
 
-                    <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit}>
+                    <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
                         Inscription
                     </button>
                 </div>

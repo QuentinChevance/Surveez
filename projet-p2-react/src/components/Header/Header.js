@@ -7,7 +7,14 @@ import freeTextQuestion from "../question/freeTextQuestion";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Dashboard } from "../Dashboard/dashboard";
 
-export class Header extends React.Component {
+export class Header extends Component {
+    constructor(props){
+        super(props);
+        console.log("headerprops: ",this.props);
+    }
+    disconnectUser() {
+        this.props.disconnect();
+    }
     render() {
         return (
             <Router>
@@ -58,7 +65,7 @@ export class Header extends React.Component {
                                 </li>
                             </ul>
                         </nav>
-                        <button className="mdc-button Navbar-button">Se déconnecter</button>
+                        <button className="mdc-button" onClick={this.disconnectUser.bind(this)}>Se déconnecter</button>
                     </header>
                     <Route exact path="/dashboard" component={Dashboard}/>
                     <Route exact path="/create-survey" component={CreateSurvey}/>

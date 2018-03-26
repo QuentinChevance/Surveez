@@ -20,17 +20,17 @@ class createSurvey extends Component {
         mdcAutoInit();
     }
 
-    onStateChange = (event) => {
+    onStateChange(event){
         this.setState({[event.target.id]:event.target.value});
     };
 
-    onChangeCkBox = (event) => {
+    onChangeCkBox(event){
         this.setState({[event.target.id]:event.target.checked});
     };
 
-    submit = () => {
+    submit(){
         console.log("scope: ",this.state.scope);
-        axios.get(`http://localhost:4000/session`,{
+        axios.get(`http://`+window.location.hostname+`:4000/session`,{
             headers: {
                 Authorization: localStorage.getItem("auth_token")
             }
@@ -38,7 +38,7 @@ class createSurvey extends Component {
             this.setState({"user_id": response.data.id});
             console.log("userid: ",this.state.user_id);
             axios.post(
-                `http://localhost:4000/survey`,
+                `http://`+window.location.hostname+`:4000/survey`,
                 {
                     title: this.state.title,
                     scope: this.state.scope,
@@ -67,7 +67,7 @@ class createSurvey extends Component {
         return (
             <div className="card">
                 <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                    <input type="text" className="mdc-text-field__input" onChange={this.onStateChange} id="title"/>
+                    <input type="text" className="mdc-text-field__input" onChange={this.onStateChange.bind(this)} id="title"/>
                     <label htmlFor="title" className="mdc-text-field__label" >Titre </label>
                 </div>
 
@@ -75,7 +75,7 @@ class createSurvey extends Component {
                     <div className="mdc-checkbox">
                         <input type="checkbox"
                                id="scope"
-                               className="mdc-checkbox__native-control" checked={this.state.scope} onChange={this.onChangeCkBox}/>
+                               className="mdc-checkbox__native-control" checked={this.state.scope} onChange={this.onChangeCkBox.bind(this)}/>
                         <div className="mdc-checkbox__background">
                             <svg className="mdc-checkbox__checkmark"
                                  viewBox="0 0 24 24">
