@@ -1,55 +1,110 @@
 import React, { Component } from 'react';
 import axios from "axios/index";
-import './dashboard.css';
+import mdcAutoInit from "@material/auto-init/index";
+import {MDCTextField} from "@material/textfield/index";
 
-class dashboard extends Component{
+
+class freeTextQuestion extends Component{
     constructor(props){
         super(props);
         this.state = {
-            title: this.props.title,
-            publishDate: this.props.publishDate,
-            surveys:[]
+            title: ""
+
+        }
+
+    }
+        componentDidMount(){
+            mdcAutoInit.register("MDCTextField", MDCTextField);
+            mdcAutoInit();
+        }
+
+        onStateChange = (event) => {
+            this.setState({[event.target.id]:event.target.value});
+            console.log("on est là",event.target);
+
         };
-    }
-    // axios({ method: 'POST', url: 'you http api here', headers: {autorizacion: localStorage.token}
-    componentDidMount() {
-        axios.get('http://localhost:4000/survey',
-            {
-                headers: {
-                    'Authorization': '8dbGg7S8b-oUKjnXPuQG',
-                },
-                params: {
-                    user_id: 2
+
+        displayErr = (msgErr, para, target) => {
+            if(!target.nextElementSibling.classList.contains("customError")){
+                target.nextElementSibling.innerHTML = msgErr;
+                target.nextElementSibling.classList.add("customError")
+            }
+        };
+
+        onBlur = (event) => {
+            let para = document.createElement('p');
+            let target = event.target;
+            if(!target.checkValidity()){
+                this.displayErr("Votre question n'est pas valide" ,para,target);
+
+
+            } else {
+                target.nextElementSibling.innerHTML = target.nextElementSibling.dataset.text;
+                target.nextElementSibling.classList.remove("customError");
+            }
+        };
+
+        submit = (headers) => {
+            let validForm = true;
+            for(let i =0; i<document.getElementsByClassName("mdc-text-field__input").length;i++){
+                if(!document.getElementsByClassName("mdc-text-field__input")[i].checkValidity()){
+                    validForm = false;
+                    break;
                 }
-            })
-            .then((response) => {
-                const surveys = response.data;
-                console.log(response.data);
-                this.setState({surveys});
-                })
-    };
+            }
+            if (validForm){
+                axios.post(`http://localhost:4000/question`, {
+                        title: this.state.title,
+                        type: 1,
+                        format: 'texte',
+                        file: 'null',
+                        parent_id: 1,
+                        survey_id: 1,
+                    },
+                    {
+                        headers: {
+                            'Authorization': localStorage.getItem("auth_token"),
+                        }
+                    }
+                ).then(response => {
+                    // Update the local state with the received data after the PUT action (and set them as data is for index)
+                    console.log("response",response);
+                    if (response.status === 200){
+                        alert("Votre question a été crée.");
+                        this.setState({
+                            title: "",
 
+                        });
+                    }
+                }).catch(error => {
+                    console.log(error);
+                    alert("Cette question existe déjà.");
+                });
+            } else {
+                alert("Un ou des champs ne sont pas valides");
 
-    render() {
+            }
 
-        return  <div className="dashboard">
-            <header className="dashboard-title"><h1>Tableau de bord</h1></header>
-            <div className="content">
-                <h2>Mes questionnaires</h2>
-                <div className="surveys-list">
-                    {this.state.surveys.map(survey => <div className="survey-item">
-                        <p><span className="survey-title" key={survey.id}>{survey.title}</span> - Crée le : {survey.publishDate}</p>
-                        <p>Nombre de réponses : <span className="nb-answers">0</span> - Modifié le : 01/12/2017</p>
-                        <div className="icons-list">
-                            <a href=""><i className="fa fa-pencil fa-2x" aria-hidden="true"/></a>
-                            <a href=""><i className="fa fa-download fa-2x" aria-hidden="true"/></a>
-                            <a href=""><i className="fa fa-check fa-2x" aria-hidden="true"/></a>
+        };
+
+        // Draw
+        render() {
+            return (
+                <div className="container container--center home">
+                    <div className="card" id="registrationForm">
+
+                        <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                            <input type="text" className="mdc-text-field__input" value={this.state.title} onChange={this.onStateChange} id="title" required="required" onBlur={this.onBlur}/>
+                            <label htmlFor="title" className="mdc-text-field__label" data-text="question">Votre question :</label>
                         </div>
-                    </div>)}
 
+                        <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit}>
+                            Ajouter
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </div>;
+            );
+        }
     }
-}
-export default dashboard
+
+    export default freeTextQuestion;

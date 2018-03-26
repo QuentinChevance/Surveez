@@ -50,7 +50,7 @@ class App extends React.Component {
             <div ref="myRef">
                 {                     
                     this.state.isConnected
-                    ?([<Header/>,<Dashboard/>])
+                    ?(<Header/>)
                     : (<Authentication handler={this.handler}/>)
                 }
             </div>

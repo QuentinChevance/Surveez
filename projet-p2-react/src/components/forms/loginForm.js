@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import mdcAutoInit from '@material/auto-init';
 import {MDCTextField} from '@material/textfield';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import App from "../../App";
 
@@ -59,7 +60,7 @@ class loginForm extends Component {
 
                 </div>
                 <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit}>
-                    Connexion
+                    <Link to="/dashboard">Connexion</Link>
                 </button>
             </div>
 

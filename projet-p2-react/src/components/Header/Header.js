@@ -3,7 +3,9 @@ import React, {Component} from "react";
 import './Header.css';
 import Authentication from "../forms/authentication";
 import CreateSurvey from "../forms/createSurvey";
+import freeTextQuestion from "../question/freeTextQuestion";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Dashboard } from "../Dashboard/dashboard";
 
 export class Header extends React.Component {
     render() {
@@ -17,11 +19,12 @@ export class Header extends React.Component {
                                 <li>
                                     <ul className="Navbar-bloc">
                                         <li className="Navbar-item">
-                                            <Link to="/" className="Navbar-link Navbar-link--primary">Tableau de bord</Link>
+                                            <Link to="/dashboard" className="Navbar-link Navbar-link--primary">Tableau de bord</Link>
                                         </li>
                                         <li>
                                             <ul>
                                                 <li className="Navbar-item"><Link to="/create-survey"  className="Navbar-link Navbar-link--secondary">Créer un questionnaire</Link></li>
+                                                
                                             </ul>
                                         </li>
                                     </ul>
@@ -57,7 +60,9 @@ export class Header extends React.Component {
                         </nav>
                         <button className="mdc-button Navbar-button">Se déconnecter</button>
                     </header>
+                    <Route exact path="/dashboard" component={Dashboard}/>
                     <Route exact path="/create-survey" component={CreateSurvey}/>
+                    <Route exact path="/create-question" component={freeTextQuestion}/>
                 </div>
             </Router>
 
