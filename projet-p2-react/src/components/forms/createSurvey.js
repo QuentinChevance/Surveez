@@ -29,7 +29,7 @@ class createSurvey extends Component {
 
     submit(){
         console.log("scope: ",this.state.scope);
-        axios.get(`http://localhost:4000/session`,{
+        axios.get(`http://`+window.location.hostname+`:4000/session`,{
             headers: {
                 Authorization: localStorage.getItem("auth_token")
             }
@@ -37,7 +37,7 @@ class createSurvey extends Component {
             this.setState({"user_id": response.data.id});
             console.log("userid: ",this.state.user_id);
             axios.post(
-                `http://localhost:4000/survey`,
+                `http://`+window.location.hostname+`:4000/survey`,
                 {
                     title: this.state.title,
                     scope: this.state.scope,

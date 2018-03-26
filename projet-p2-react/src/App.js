@@ -19,7 +19,7 @@ class App extends React.Component {
     }
 
     checkConnection(){
-        axios.get('http://localhost:4000/session',{
+        axios.get('http://'+window.location.hostname+':4000/session',{
             headers: {
                 Authorization: localStorage.getItem("auth_token")
             }
