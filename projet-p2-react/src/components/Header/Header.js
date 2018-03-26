@@ -20,7 +20,7 @@ export class Header extends Component {
             <Router>
                 <div>
                     <header className="Navbar">
-                        <h1 className="Navbar-logo">Surveez</h1>
+                        <h1 className="Navbar-logo"><img src="/Surveez.svg" alt=""/></h1>
                         <nav>
                             <ul>
                                 <li>

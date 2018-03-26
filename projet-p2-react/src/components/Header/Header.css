@@ -27,8 +27,9 @@ ul, li {
 }
 
 .Navbar-logo {
-    text-align: center;
+    margin:22px auto 10px auto;
     color: #fff;
+    width: 65%;
 }
 
 .Navbar-item {
