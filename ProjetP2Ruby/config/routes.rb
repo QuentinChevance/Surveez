@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :registration, only: [:index, :create, :destroy, :update]
   resources :survey, only: [:index, :create, :destroy, :update]
   resources :question, only: [:index,:create, :destroy, :update]
+  resources :answer, only: [:index,:create,:destroy,:update]
 
 end
