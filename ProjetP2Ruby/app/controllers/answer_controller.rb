@@ -5,6 +5,16 @@ class AnswerController < ApplicationController
     if params.has_key?(:id)
       @answer = Answer.where(question_id: params[:id]).order("created_at DESC")
       render json: @answer
+
+    elsif params.has_key?(:url)
+      @survey = Survey.where(url: params[:url])
+      @questions = Question.where(survey_id: @survey.ids)
+      @answers = Answer.joins(:question).where(question_id: @questions.ids)
+      render json: {
+      question: @questions,
+      reponse: @answers
+    }.to_json
+
     else
       @answers = Answer.order("created_at DESC")
       render json: @answers
