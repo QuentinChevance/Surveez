@@ -5,22 +5,59 @@ import Authentication from "../forms/authentication";
 import CreateSurvey from "../forms/createSurvey";
 import freeTextQuestion from "../question/freeTextQuestion";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from 'axios';
+
 import { Dashboard } from "../Dashboard/dashboard";
 
 export class Header extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            userId : this.props.userId,
+            userFirstName: this.props.userFirstName,
+            userLastName: this.props.userLastName,
+            userEmail: this.props.userEmail
+        }
         console.log("headerprops: ",this.props);
     }
     disconnectUser() {
         this.props.disconnect();
+    }
+    componentWillMount(){
+        axios.get("http://"+window.location.hostname+":4000/session",{
+            headers: {
+                Authorization: localStorage.getItem("auth_token")
+            }
+        }).then(response => {
+            console.log("response: ",response);
+            axios.get("http://"+window.location.hostname+":4000/registration?id="+response.data.id,{
+                headers: {
+                    Authorization: localStorage.getItem("auth_token")
+                }
+            }).then(response => {
+                this.setState({
+                    userId: response.data.id,
+                    userFirstName: response.data.firstName,
+                    userLastName: response.data.lastName,
+                    userEmail: response.data.email
+                })
+                console.log("info user: ",response);
+            })
+            
+        }).catch(error=>{
+            console.error(error);
+        })
     }
     render() {
         return (
             <Router>
                 <div>
                     <header className="Navbar">
-                        <h1 className="Navbar-logo"><img src="/Surveez.svg" alt=""/></h1>
+                        <h1 className="Navbar-logo"><img src="/Surveez.svg" alt="Logo de l'application"/></h1>
+                        <div class="user-infos">
+                            <p class="user-name">{this.state.userFirstName} {this.state.userLastName}</p>
+                            <p class="user-email">{this.state.userEmail}</p>
+                        </div>
                         <nav>
                             <ul>
                                 <li>
@@ -65,7 +102,9 @@ export class Header extends Component {
                                 </li>
                             </ul>
                         </nav>
-                        <button className="mdc-button" onClick={this.disconnectUser.bind(this)}>Se déconnecter</button>
+                        <div class="disconnect">
+                            <button className="mdc-button mdc-button--raised" onClick={this.disconnectUser.bind(this)}>Se déconnecter</button>
+                        </div>
                     </header>
                     <Route exact path="/dashboard" component={Dashboard}/>
                     <Route exact path="/create-survey" component={CreateSurvey}/>
