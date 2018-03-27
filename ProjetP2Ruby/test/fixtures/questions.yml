@@ -2,14 +2,12 @@
 
 one:
   title: MyString
-  type: 1
   format: MyString
   file: MyString
   parent_id: 1
 
 two:
   title: MyString
-  type: 1
   format: MyString
   file: MyString
   parent_id: 1
