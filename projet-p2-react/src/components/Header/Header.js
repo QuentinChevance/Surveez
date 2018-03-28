@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import './Header.css';
 import Authentication from "../forms/authentication";
 import CreateSurvey from "../forms/createSurvey";
-import freeTextQuestion from "../question/freeTextQuestion";
+import createQuestion from "../question/createQuestion";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Dashboard } from "../Dashboard/dashboard";
 
@@ -69,7 +69,7 @@ export class Header extends Component {
                     </header>
                     <Route exact path="/dashboard" component={Dashboard}/>
                     <Route exact path="/create-survey" component={CreateSurvey}/>
-                    <Route exact path="/create-question" component={freeTextQuestion}/>
+                    <Route exact path="/create-question" component={createQuestion}/>
                 </div>
             </Router>
 

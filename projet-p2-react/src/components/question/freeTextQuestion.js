@@ -8,7 +8,8 @@ class freeTextQuestion extends Component{
     constructor(props){
         super(props);
         this.state = {
-            title: ""
+            title: "",
+            currentType: 1
 
         }
 
@@ -87,20 +88,20 @@ class freeTextQuestion extends Component{
 
         };
 
-        // Draw
+        
         render() {
             return (
                 <div className="container container--center home">
                     <div className="card" id="registrationForm">
-
                         <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                            <input type="text" className="mdc-text-field__input" value={this.state.title} onChange={this.onStateChange.bind(this)} id="title" required="required" onBlur={this.onBlur.bind(this)}/>
-                            <label htmlFor="title" className="mdc-text-field__label" data-text="question">Votre question :</label>
-                        </div>
+                        <input type="text" className="mdc-text-field__input" value={this.state.title} onChange={this.onStateChange.bind(this)} id="title" required="required" onBlur={this.onBlur.bind(this)}/>
+                        <label htmlFor="title" className="mdc-text-field__label" data-text="question">Votre question :</label>
+                    </div>
 
-                        <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
-                            Ajouter
-                        </button>
+                    <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
+                        Ajouter
+                    </button>
+                        
                     </div>
                 </div>
             );
