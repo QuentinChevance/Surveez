@@ -19,20 +19,24 @@ export class Dashboard extends Component{
         }).then(response => {
             this.setState({"user_id": response.data.id});
             console.log("userid: ",this.state.user_id);
-            axios.get(`http://`+window.location.hostname+':4000/survey',
-            {
-                headers: {
-                    'Authorization': 'sFx-Hkwkyzz2aSGyzAgB',
-                },
-                params: {
-                    user_id: this.state.user_id
-                }
-            })
-            .then((response) => {
-                const surveys = response.data;
-                console.log(response.data);
-                this.setState({surveys});
-            })
+            this.getSurveys();
+        });
+    }
+
+    getSurveys(){
+        axios.get(`http://`+window.location.hostname+':4000/survey',
+        {
+            headers: {
+                'Authorization': localStorage.getItem("auth_token"),
+            },
+            params: {
+                user_id: this.state.user_id
+            }
+        })
+        .then((response) => {
+            const surveys = response.data;
+            console.log(response.data);
+            this.setState({surveys});
         });
     }
 
@@ -51,6 +55,16 @@ export class Dashboard extends Component{
         return dt+'/' + month + '/'+year;
     }
 
+    deleteSurvey(e){
+        axios.delete(`http://`+window.location.hostname+':4000/survey/'+e.target.getAttribute("surveyid"),
+        {
+            headers: {
+                'Authorization': localStorage.getItem("auth_token"),
+            }
+        }).then(response => {
+            this.getSurveys();
+        })
+    }
 
     render() {
         return  (
@@ -62,10 +76,12 @@ export class Dashboard extends Component{
                         {this.state.surveys.map(survey => <div className="survey-item">
                             <p><span className="survey-title" key={survey.id}>{survey.title}</span> - Crée le : {this.displaySurveyDate(survey.created_at)}</p>
                             <p>Nombre de réponses : <span className="nb-answers">0</span> - Modifié le : {this.displaySurveyDate(survey.updated_at)}</p>
+                            <p>Url publique: {survey.url}</p>
                             <div className="icons-list">
-                                <a href=""><i className="fa fa-pencil fa-2x" aria-hidden="true"/></a>
-                                <a href=""><i className="fa fa-download fa-2x" aria-hidden="true"/></a>
-                                <a href=""><i className="fa fa-check fa-2x" aria-hidden="true"/></a>
+                                <button><i className="fa fa-pencil fa-2x" aria-hidden="true"/></button>
+                                <button><i className="fa fa-download fa-2x" aria-hidden="true"/></button>
+                                <button><i className="fa fa-check fa-2x" aria-hidden="true"/></button>
+                                <button><i className="fa fa-trash fa-2x" aria-hidden="true" surveyId={survey.id} onClick={this.deleteSurvey.bind(this)}/></button>
                             </div>
                         </div>)}
 
