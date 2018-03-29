@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../node_modules/material-components-web/dist/material-components-web.min.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 import Authentication from "./components/forms/authentication";
 import axios from 'axios';
@@ -7,12 +8,14 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {Dashboard} from "./components/Dashboard/dashboard";
 import './components/Dashboard/dashboard.css';
+import { AnswerSurvey } from './components/Answer/answer_survey';
 
 class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            isConnected : false
+            isConnected : false,
+            displaySurvey: false
         }
         this.handler = this.handler.bind(this)
         localStorage.setItem("isLoggedIn","false");
@@ -33,6 +36,7 @@ class App extends React.Component {
 
     componentWillMount(){
         this.checkConnection();
+        this.checkAnswerUrl();
     }
 
     handler() {
@@ -45,13 +49,31 @@ class App extends React.Component {
         this.setState({"isConnected":false});
     }
 
+    checkAnswerUrl(){
+        if(window.location.pathname === "/answer" && window.location.search.match(/\?url=.*/)){
+            this.setState({displaySurvey:true});
+            console.log("displaySurvey: ",this.state.displaySurvey);
+        }
+    }
+
     render() {
+        console.log("displaySurvey2: ",this.state.displaySurvey);
         return (
             <div>
                 {                     
                     this.state.isConnected
-                    ?(<Header disconnect={this.disconnect.bind(this)}/>)
-                    : (<Authentication handler={this.handler}/>)
+                    ? (<Header disconnect={this.disconnect.bind(this)}/>)
+                    : ""
+                }
+                {
+                    this.state.displaySurvey && !this.state.isConnected
+                    ? (<AnswerSurvey/>)
+                    : ""
+                }
+                {                     
+                    !this.state.isConnected && !this.state.displaySurvey
+                    ? (<Authentication handler={this.handler}/>)
+                    : ""
                 }
             </div>
         );
