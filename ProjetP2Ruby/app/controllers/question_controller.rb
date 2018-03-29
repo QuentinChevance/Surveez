@@ -1,6 +1,5 @@
 class QuestionController < ApplicationController
 
-
   def index
     if params.has_key?(:id)
       @question = Question.where(question_id: params[:id]).order("created_at DESC")

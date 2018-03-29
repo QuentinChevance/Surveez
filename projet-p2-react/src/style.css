@@ -145,10 +145,16 @@ body, html {
     justify-content: center;
 }
 
-.icons-list a {
+.icons-list button {
     margin: 0 10px;
     color: #2196F3;
     text-decoration: none;
+    border:none;
+    background-color: white;
+}
+
+.icons-list button:hover {
+    cursor: pointer;
 }
 
 .menu-left ul, .menu-left li {

@@ -54,9 +54,9 @@ export class Header extends Component {
                 <div>
                     <header className="Navbar">
                         <h1 className="Navbar-logo"><img src="/Surveez.svg" alt="Logo de l'application"/></h1>
-                        <div class="user-infos">
-                            <p class="user-name">{this.state.userFirstName} {this.state.userLastName}</p>
-                            <p class="user-email">{this.state.userEmail}</p>
+                        <div className="user-infos">
+                            <p className="user-name">{this.state.userFirstName} {this.state.userLastName}</p>
+                            <p className="user-email">{this.state.userEmail}</p>
                         </div>
                         <nav>
                             <ul>
@@ -102,7 +102,7 @@ export class Header extends Component {
                                 </li>
                             </ul>
                         </nav>
-                        <div class="disconnect">
+                        <div className="disconnect">
                             <button className="mdc-button mdc-button--raised" onClick={this.disconnectUser.bind(this)}>Se déconnecter</button>
                         </div>
                     </header>

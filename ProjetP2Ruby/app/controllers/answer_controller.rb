@@ -1,4 +1,6 @@
 class AnswerController < ApplicationController
+  skip_before_action :authenticate_user!,  :only => [:index,:create]
+
 
   def index
 
@@ -11,8 +13,8 @@ class AnswerController < ApplicationController
       @questions = Question.where(survey_id: @survey.ids)
       @answers = Answer.joins(:question).where(question_id: @questions.ids)
       render json: {
-      question: @questions,
-      reponse: @answers
+      questions: @questions,
+      reponses: @answers
     }.to_json
 
     else
