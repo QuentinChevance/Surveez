@@ -49,7 +49,7 @@ class createQuestion extends Component{
             console.log("freequestion: ",this.state.freeQuestion);
             return (
                 <div className="container container--center home">
-                    <div className="card" id="createQuestionForm">
+                    <div className="card" id="createQuestionForm" style={{marginTop: '25px'}}>
                         <select value={this.state.selectValue} onChange={this.handleChange.bind(this)} name="nom" size="1">
                             <option value='0'>Choisissez votre type de question</option>
                             <option value='1'>Question avec réponse en texte libre</option>
