@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import '../node_modules/material-components-web/dist/material-components-web.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-
 import Authentication from "./components/forms/authentication";
 import axios from 'axios';
-import './App.css';
 import {Header} from "./components/Header/Header";
 import {Dashboard} from "./components/Dashboard/dashboard";
 import './components/Dashboard/dashboard.css';
