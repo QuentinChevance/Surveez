@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from "axios/index";
 import './dashboard.css';
 
+import { Route, Link } from "react-router-dom";
+
 export class Dashboard extends Component{
     constructor(props){
         super(props);
@@ -125,7 +127,7 @@ export class Dashboard extends Component{
                             <p>Nombre de réponses : <span className="nb-answers">0</span> - Modifié le : {this.displaySurveyDate(survey.updated_at)}</p>
                             <p className="publicUrl">Url privée: <a href={window.location.origin + "/answer?url="+ survey.url}>{window.location.origin + "/answer?url="+ survey.url}</a></p>
                             <div className="icons-list">
-                                <button title="Éditer"><i className="fa fa-pencil fa-2x" aria-hidden="true"/></button>
+                                <button title="Éditer"><Link to={"modifySurvey/"+survey.url}><i className="fa fa-pencil fa-2x" aria-hidden="true"/></Link></button>
                                 <button title="Télécharger"><i className="fa fa-download fa-2x" aria-hidden="true"/></button>
                                 <button title="Publier"><i className="fa fa-check fa-2x" aria-hidden="true"/></button>
                                 <button title="Supprimer"><i className="fa fa-trash fa-2x" aria-hidden="true" surveyId={survey.id} onClick={this.deleteSurvey.bind(this)}/></button>
