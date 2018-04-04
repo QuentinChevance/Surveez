@@ -66,6 +66,7 @@ class createSurvey extends Component {
     render() {
         return (
             <div className="card">
+                <h2>Titre de votre questionnaire</h2>
                 <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
                     <input type="text" className="mdc-text-field__input" onChange={this.onStateChange.bind(this)} id="title"/>
                     <label htmlFor="title" className="mdc-text-field__label" >Titre </label>

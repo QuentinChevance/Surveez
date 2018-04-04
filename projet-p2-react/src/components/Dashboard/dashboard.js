@@ -123,8 +123,8 @@ export class Dashboard extends Component{
                     <h2>Mes questionnaires</h2>
                     <div className="surveys-list">
                         {this.state.surveys.map(survey => <div className="survey-item">
-                            <p><span className="survey-title" key={survey.id}>{survey.title}</span> - Crée le : {this.displaySurveyDate(survey.created_at)}</p>
-                            <p>Nombre de réponses : <span className="nb-answers">0</span> - Modifié le : {this.displaySurveyDate(survey.updated_at)}</p>
+                            <p className="surveys-itemHeader"><span className="survey-title" key={survey.id}>{survey.title}</span> - Crée le : {this.displaySurveyDate(survey.created_at)}</p>
+                            <p>Nombre de réponses : <span className="nb-answers">0</span><br/>Modifié le : {this.displaySurveyDate(survey.updated_at)}</p>
                             <p className="publicUrl">Url privée: <a href={window.location.origin + "/answer?url="+ survey.url}>{window.location.origin + "/answer?url="+ survey.url}</a></p>
                             <div className="icons-list">
                                 <button title="Éditer"><Link to={"modifySurvey/"+survey.url}><i className="fa fa-pencil fa-2x" aria-hidden="true"/></Link></button>
