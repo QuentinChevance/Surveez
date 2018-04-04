@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios/index";
+import mdcAutoInit from "@material/auto-init/index";
+import {MDCTextField} from "@material/textfield/index";
 
 export class AnswerSurvey extends Component {
     constructor(props) {
@@ -7,8 +9,20 @@ export class AnswerSurvey extends Component {
         this.state = {
             user_id: this.props.user_id,
             questions: [],
-            answers: {}
+            answers: {},
+            position: 0,
+            getQuestions: false,
+            isLastQuestion: false,
+            isFinished: false,
+            surveyTitle: ""
         };
+    }
+
+
+    componentDidMount(){
+        console.log("heeeeeeeeeeeey");
+        
+        
     }
     // axios({ method: 'POST', url: 'you http api here', headers: {autorizacion: localStorage.token}
     componentWillMount() {
@@ -28,8 +42,12 @@ export class AnswerSurvey extends Component {
             console.log("answers: ",answers)
             this.setState({
                 questions: response.data.questions,
-                answers: answers
+                answers: answers,
+                getQuestions:true,
+                surveyTitle: response.data.survey[0].title
              });
+            mdcAutoInit.register("MDCTextField", MDCTextField);
+            mdcAutoInit();
         });
     }
     onBlur(event){
@@ -40,7 +58,7 @@ export class AnswerSurvey extends Component {
 
 
         } else {
-            target.nextElementSibling.innerHTML = target.nextElementSibling.dataset.text;
+            // target.nextElementSibling.innerHTML = target.nextElementSibling.dataset.text;
             target.nextElementSibling.classList.remove("customError");
         }
     };
@@ -55,7 +73,7 @@ export class AnswerSurvey extends Component {
 
 
 
-    submit(headers){
+    submit(){
         let validForm = true;
         for(let i =0; i<document.getElementsByClassName("mdc-text-field__input").length;i++){
             if(!document.getElementsByClassName("mdc-text-field__input")[i].checkValidity()){
@@ -65,32 +83,44 @@ export class AnswerSurvey extends Component {
         }
         if (validForm){
             let questionsLength = this.state.questions.length;
-            this.state.questions.forEach(question => {
-                let self = this;
-                setTimeout(function() {
+            let position = this.state.position;
+            let questionId = this.state.questions[position].id;
+            // this.state.questions.forEach(question => {
+            //     let self = this;
+            //     setTimeout(function() {
                         axios.post(`http://localhost:4000/answer`, {
-                        content: self.state.answers[question.id].answer,
-                        question_id: question.id,
+                        content: this.state.answers[questionId].answer,
+                        question_id: questionId,
                     }).then(response => {
                         // Update the local state with the received data after the PUT action (and set them as data is for index)
                         console.log("response",response);
                         if (response.status === 200){
-                            
-                            // alert("Vos réponses ont été envoyées.");
-                            // this.setState({
-                            //     title: "",
-
-                            // });
+                            position = ++position;
+                            if(position === questionsLength -1 ) {
+                                this.setState({isLastQuestion: true});
+                            }
+                            if(position === questionsLength) {
+                                this.setState({
+                                    isFinished: true,
+                                    isLastQuestion: false
+                                });
+                            }
+                            this.setState({position: position});
+                            console.log("pos: ",position);
+                            if(document.getElementsByClassName("mdc-text-field__input").length > 0){
+                                document.getElementsByClassName("mdc-text-field__input")[0].value = "";
+                            }
                         }
                     }).catch(error => {
                         console.log("err:",error);
                         // alert("Cette question existe déjà.");
                     });
-                },1000);
-            });
+                    
+            //     },1000);
+            // });
             
-        } else {
-            alert("Un ou des champs ne sont pas valides");
+        // } else {
+        //     alert("Un ou des champs ne sont pas valides");
 
         }
 
@@ -106,19 +136,52 @@ export class AnswerSurvey extends Component {
 
 
     render() {
+        console.log("questions: ",this.state.questions);
+        console.log("position: ",this.state.position);
+        let getQuestions = this.state.getQuestions,
+            isLastQuestion = this.state.isLastQuestion,
+            isFinished = this.state.isFinished;
         return (
             <div>
-                {this.state.questions.map(question =>
-                <div className="question-item">
-                    <p><span className="question-title" key={question.id}>{question.title}</span></p>
-                    <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" className="mdc-text-field__input" question-id={question.id} required="required" onChange={this.onStateChange.bind(this)} onBlur={this.onBlur.bind(this)} />
-                        <label htmlFor="title" className="mdc-text-field__label" data-text="response">Votre réponse :</label>
+                { getQuestions && !isLastQuestion && !isFinished ? (
+                    <div className="container container--center home">
+                        <div className="card">
+                            <div className="question-item">
+                                <h1>{this.state.surveyTitle}</h1>
+                                <p><span className="question-title" key={this.state.questions[this.state.position].id}>{this.state.questions[this.state.position].title}</span></p>
+                                <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                                    <input type="text" className="mdc-text-field__input" question-id={this.state.questions[this.state.position].id} required="required" onChange={this.onStateChange.bind(this)} onBlur={this.onBlur.bind(this)} />
+                                    <label htmlFor="title" className="mdc-text-field__label">Votre réponse :</label>
+                                </div>
+                                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
+                                    Valider
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>)}
-                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
-                    Valider vos réponses
-                </button>
+                ) : ""}
+                { getQuestions && isLastQuestion && !isFinished? (
+                    <div className="container container--center home">
+                        <div className="card">
+                            <div className="question-item">
+                                <h1>{this.state.surveyTitle}</h1>
+                                <p><span className="question-title" key={this.state.questions[this.state.position].id}>{this.state.questions[this.state.position].title}</span></p>
+                                <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
+                                    <input type="text" className="mdc-text-field__input" question-id={this.state.questions[this.state.position].id} required="required" onChange={this.onStateChange.bind(this)} onBlur={this.onBlur.bind(this)} />
+                                    <label htmlFor="title" className="mdc-text-field__label">Votre réponse :</label>
+                                </div>
+                                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
+                                    Valider le questionnaire
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ) : ""}
+                {
+                    isFinished ?
+                    "Votre questionnaire est validé !":
+                    ""
+                }
             </div>
         );
     }
