@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from "axios/index";
 import './dashboard.css';
 
+import { Route, Link } from "react-router-dom";
+
 export class Dashboard extends Component{
     constructor(props){
         super(props);
@@ -78,7 +80,7 @@ export class Dashboard extends Component{
                             <p>Nombre de réponses : <span className="nb-answers">0</span> - Modifié le : {this.displaySurveyDate(survey.updated_at)}</p>
                             <p>Url publique: {survey.url}</p>
                             <div className="icons-list">
-                                <button><i className="fa fa-pencil fa-2x" aria-hidden="true"/></button>
+                                <button><Link to={"modifySurvey/"+survey.url}><i className="fa fa-pencil fa-2x" aria-hidden="true"/></Link></button>
                                 <button><i className="fa fa-download fa-2x" aria-hidden="true"/></button>
                                 <button><i className="fa fa-check fa-2x" aria-hidden="true"/></button>
                                 <button><i className="fa fa-trash fa-2x" aria-hidden="true" surveyId={survey.id} onClick={this.deleteSurvey.bind(this)}/></button>
