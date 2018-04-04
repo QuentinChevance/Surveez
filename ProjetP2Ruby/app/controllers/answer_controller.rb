@@ -14,7 +14,8 @@ class AnswerController < ApplicationController
       @answers = Answer.joins(:question).where(question_id: @questions.ids)
       render json: {
       questions: @questions,
-      reponses: @answers
+      reponses: @answers,
+      survey: @survey
     }.to_json
 
     else

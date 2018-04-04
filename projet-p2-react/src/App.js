@@ -41,6 +41,7 @@ class App extends React.Component {
 
     handler() {
         this.checkConnection();
+        this.checkAnswerUrl();
         console.log("update");
     }
 
@@ -53,6 +54,9 @@ class App extends React.Component {
         if(window.location.pathname === "/answer" && window.location.search.match(/\?url=.*/)){
             this.setState({displaySurvey:true});
             console.log("displaySurvey: ",this.state.displaySurvey);
+        } else {
+            this.setState({displaySurvey:false});
+
         }
     }
 
@@ -62,11 +66,11 @@ class App extends React.Component {
             <div>
                 {                     
                     this.state.isConnected
-                    ? (<Header disconnect={this.disconnect.bind(this)}/>)
+                    ? (<Header disconnect={this.disconnect.bind(this)} handler={this.handler}/>)
                     : ""
                 }
                 {
-                    this.state.displaySurvey && !this.state.isConnected
+                    this.state.displaySurvey
                     ? (<AnswerSurvey/>)
                     : ""
                 }
