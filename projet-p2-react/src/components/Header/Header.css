@@ -63,3 +63,10 @@ ul, li {
 .Navbar-link:active {
     background: #64B5F6;
 }
+
+.Logout {
+    position: absolute;
+    bottom: 10px;
+    left: 75px;
+    color: #fff!important;
+}

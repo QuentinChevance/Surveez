@@ -2,12 +2,18 @@
     --mdc-theme-primary: #2196F3;
 }
 
-.truc {
-    width: 100%;
+body, html {
+    font-family: sans-serif;
+    margin:0;
 }
 
-body, html {
-    margin:0;
+.Title {
+    text-align: center;
+}
+
+.mdc-button a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .container{
@@ -22,54 +28,6 @@ body, html {
     display: flex;
     flex-direction: column;
     margin:auto;
-}
-
-.menu-left {
-    background-color: #1976D2;
-    width:300px;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-}
-
-.menu-left h1 {
-    text-align: center;
-    margin: 30px 0;
-}
-
-.menu-left .user-name {
-    margin: 0;
-}
-
-.menu-left ul {
-    list-style-type: none;
-    margin:10px;
-
-}
-
-.menu-left li {
-    margin:10px;
-}
-
-.menu-left .mdc-list-divider {
-    border-color: #2196F3;
-}
-
-.menu-item {
-    text-decoration:none;
-    color:white;
-    transition: 0.25s ease;
-}
-
-
-.menu-item:hover, .menu-item:focus {
-    background-color:#2196F3;
-}
-
-.menu-item:active {
-    background-color: #64B5F6;
 }
 
 .user-infos {
@@ -157,30 +115,7 @@ body, html {
     cursor: pointer;
 }
 
-.menu-left ul, .menu-left li {
-    padding: 0;
-    margin: 0;
-}
-
-.menu-item {
-    display: block;
-    padding: 10px 0 10px 10px;
-}
-
-.menu-item--secondary {
-    padding-left: 30px;
-}
-
 .home button {
     margin-top: 20px;
 }
-/*.surveys-list {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    justify-content: space-between;*/
-/*}*/
-
-/*.survey-item:last-child {*/
-/*    align-self*/
-/*}*/
 

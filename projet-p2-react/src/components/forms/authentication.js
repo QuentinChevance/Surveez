@@ -16,7 +16,7 @@ class authentication extends Component{
         <Router>
             <div className="container container--center home">
                 <div className="card">
-                    <h2 className="mdc-typography--display3">Surveez</h2>
+                    <h2 className="mdc-typography--display3 Title">Surveez</h2>
 
                     <nav id="basic-tab-bar" className="mdc-tab-bar">
                         <NavLink to="/signup" activeClassName="mdc-tab--active" className="mdc-tab">Inscription</NavLink>
