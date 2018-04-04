@@ -9,7 +9,8 @@ class freeTextQuestion extends Component{
         super(props);
         console.log("props: ",this.props);
         this.state = {
-            title: ""
+            title: "",
+            currentType: 1
 
         }
 
