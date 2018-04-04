@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios/index";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './dashboard.css';
 
 export class Dashboard extends Component{
@@ -126,7 +127,7 @@ export class Dashboard extends Component{
                             <p className="publicUrl">Url privée: <a href={window.location.origin + "/answer?url="+ survey.url}>{window.location.origin + "/answer?url="+ survey.url}</a></p>
                             <div className="icons-list">
                                 <button title="Éditer"><i className="fa fa-pencil fa-2x" aria-hidden="true"/></button>
-                                <button title="Télécharger"><i className="fa fa-download fa-2x" aria-hidden="true"/></button>
+                                <button title="Réponses"><Link to={`/answers/${survey.id}`}><i className="fa fa-bar-chart fa-2x" aria-hidden="true"/></Link></button>
                                 <button title="Publier"><i className="fa fa-check fa-2x" aria-hidden="true"/></button>
                                 <button title="Supprimer"><i className="fa fa-trash fa-2x" aria-hidden="true" surveyId={survey.id} onClick={this.deleteSurvey.bind(this)}/></button>
                             </div>

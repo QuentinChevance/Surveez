@@ -3,11 +3,14 @@ import React, {Component} from "react";
 import './Header.css';
 import Authentication from "../forms/authentication";
 import CreateSurvey from "../forms/createSurvey";
+
 import createQuestion from "../question/createQuestion";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
 import { Dashboard } from "../Dashboard/dashboard";
+import AnswersSurvey from "../Answer/answers_survey";
+
 
 export class Header extends Component {
     constructor(props){
@@ -113,6 +116,8 @@ export class Header extends Component {
                     <Route exact path="/dashboard" component={Dashboard}/>
                     <Route exact path="/create-survey" component={CreateSurvey}/>
                     <Route exact path="/create-question" component={createQuestion}/>
+                    <Route exact path="/answers/:id" component={AnswersSurvey}/>
+
                 </div>
             </Router>
 
