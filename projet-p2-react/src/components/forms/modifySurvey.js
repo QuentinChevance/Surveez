@@ -2,74 +2,80 @@ import React, { Component } from 'react';
 import mdcAutoInit from '@material/auto-init';
 import {MDCTextField} from '@material/textfield';
 import axios from 'axios';
-import App from "../../App";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
-class createSurvey extends Component {
+import { Route, Link } from "react-router-dom";
+
+
+class modifySurvey extends Component {
     constructor(props){
         super(props);
         this.state = {
             title: this.props.title,
             scope: false,
             user_id: this.props.user_id,
-            survey_id: this.props.survey_id,
+            survey_url: this.props.match.params.url,
+            questions: []
         }
     }
     componentDidMount(){
         mdcAutoInit.register('MDCTextField', MDCTextField);
         mdcAutoInit();
-    }
-
-    onStateChange(event){
-        this.setState({[event.target.id]:event.target.value});
-    };
-
-    onChangeCkBox(event){
-        this.setState({[event.target.id]:event.target.checked});
-    };
-
-    submit(){
+        console.log(this.state.survey_url);
         axios.get(`http://`+window.location.hostname+`:4000/session`,{
             headers: {
                 Authorization: localStorage.getItem("auth_token")
             }
         }).then(response => {
             this.setState({"user_id": response.data.id});
-            axios.post(
-                `http://`+window.location.hostname+`:4000/survey`,
-                {
-                    title: this.state.title,
-                    scope: this.state.scope,
-                    typeSurvey: "sondage",
-                    isActive: 0,
-                    user_id: response.data.id
-                },
-                {
-                    headers: {
-                        Authorization: localStorage.getItem("auth_token")
+            axios.get(
+                `http://`+window.location.hostname+`:4000/answer`,{
+                params:{
+                    url: this.state.survey_url
+
                     }
                 }
             ).then(response => {
-                console.log("response post survey: ",response);
-                this.setState({survey_id: response.data.id});
+                console.log("questions", response.data.questions);
+                this.setState({
+                    questions:response.data.questions,
+                    survey_id: response.data.id
+                });
+                mdcAutoInit.register('MDCTextField', MDCTextField);
+                mdcAutoInit();
                 localStorage.setItem("currentSurveyId",response.data.id);
-                // Update the local state with the received data after the PUT action (and set them as data is for index)
             }).catch(error => console.log(error))
         });
-        
-        
+    }
+
+    onStateChange(event){
+
+    };
+
+    onChangeCkBox(event){
+
+    };
+
+    submit(){
+
+
+
     };
 
 
     // Draw
     render() {
         return (
+
             <div className="card">
-                <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                    <input type="text" className="mdc-text-field__input" onChange={this.onStateChange.bind(this)} id="title"/>
-                    <label htmlFor="title" className="mdc-text-field__label" >Titre </label>
+
+                {this.state.questions.map(question =>
+                <div className="mdc-text-field mdc-text-field--upgraded" data-mdc-auto-init="MDCTextField">
+                    <input type="text" className="mdc-text-field__input" id="title"/>
+                    <label htmlFor="title" className="mdc-text-field__label" data-text={question.title} >Titre </label>
                 </div>
+                )}
+
 
                 <div className="mdc-form-field">
                     <div className="mdc-checkbox">
@@ -92,14 +98,14 @@ class createSurvey extends Component {
                 </div>
                 <Link to={`/create-question`}>
                     <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
-                        Créer
+                        Mettre à jour
                     </button>
                 </Link>
-                
+
             </div>
 
         );
     }
 }
 
-export default createSurvey
+export default modifySurvey

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavLink, BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {NavLink, BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import RegistrationForm from './registrationForm';
 import LoginForm from './loginForm';
 
@@ -25,6 +25,8 @@ class authentication extends Component{
                     </nav>
                     <Route path="/login" render={props => (<LoginForm handler={this.props.handler}/>)}/>
                     <Route path="/signup" component={RegistrationForm}/>
+                    <Redirect to="/login" />
+
                 </div>
             </div>
         </Router>
