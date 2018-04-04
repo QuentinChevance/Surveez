@@ -65,7 +65,7 @@ export class Header extends Component {
                                 </li>
                             </ul>
                         </nav>
-                        <button className="mdc-button" onClick={this.disconnectUser.bind(this)}>Se déconnecter</button>
+                        <button className="mdc-button Logout" onClick={this.disconnectUser.bind(this)}>Se déconnecter</button>
                     </header>
                     <Route exact path="/dashboard" component={Dashboard}/>
                     <Route exact path="/create-survey" component={CreateSurvey}/>
