@@ -16,6 +16,10 @@ body, html {
     text-decoration: none;
 }
 
+.Button--small {
+    text-align: center;
+}
+
 .container{
     display: flex;
 }
