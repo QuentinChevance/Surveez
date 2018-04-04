@@ -118,7 +118,7 @@ export class Header extends Component {
                     <Route exact path="/create-survey" component={CreateSurvey}/>
                     <Route exact path="/create-question" component={createQuestion}/>
                     <Route exact path="/modifySurvey/:url" component={modifySurvey}/>
-                    <Route exact path="/answers/:id" component={AnswersSurvey}/>
+                    <Route exact path="/answers/:url" component={AnswersSurvey}/>
 
                 </div>
             </Router>
