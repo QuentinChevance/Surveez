@@ -48,6 +48,10 @@ export class Header extends Component {
             console.error(error);
         })
     }
+
+    checkUrl(){
+        this.props.handler();
+    }
     render() {
         return (
             <Router>
@@ -62,7 +66,7 @@ export class Header extends Component {
                             <ul>
                                 <li>
                                     <ul className="Navbar-bloc">
-                                        <li className="Navbar-item">
+                                        <li className="Navbar-item" onClick={this.checkUrl.bind(this)}>
                                             <Link to="/dashboard" className="Navbar-link Navbar-link--primary">Tableau de bord</Link>
                                         </li>
                                         <li>

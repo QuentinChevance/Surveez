@@ -91,7 +91,7 @@ class freeTextQuestion extends Component{
     render() {
         return (
             <div className="container container--center home">
-                <div className="card" id="registrationForm">
+                <div className="card">
 
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
                         <input type="text" className="mdc-text-field__input" value={this.state.title} onChange={this.onStateChange.bind(this)} id="title" required="required" onBlur={this.onBlur.bind(this)}/>
