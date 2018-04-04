@@ -12,7 +12,8 @@ class createSurvey extends Component {
         this.state = {
             title: this.props.title,
             scope: false,
-            user_id: this.props.user_id
+            user_id: this.props.user_id,
+            survey_id: this.props.survey_id
         }
     }
     componentDidMount(){
@@ -29,14 +30,12 @@ class createSurvey extends Component {
     };
 
     submit(){
-        console.log("scope: ",this.state.scope);
         axios.get(`http://`+window.location.hostname+`:4000/session`,{
             headers: {
                 Authorization: localStorage.getItem("auth_token")
             }
         }).then(response => {
             this.setState({"user_id": response.data.id});
-            console.log("userid: ",this.state.user_id);
             axios.post(
                 `http://`+window.location.hostname+`:4000/survey`,
                 {
@@ -44,7 +43,7 @@ class createSurvey extends Component {
                     scope: this.state.scope,
                     typeSurvey: "sondage",
                     isActive: 0,
-                    user_id: this.state.user_id
+                    user_id: response.data.id
                 },
                 {
                     headers: {
@@ -52,9 +51,10 @@ class createSurvey extends Component {
                     }
                 }
             ).then(response => {
+                console.log("response post survey: ",response);
+                this.setState({survey_id: response.data.id});
+                localStorage.setItem("currentSurveyId",response.data.id);
                 // Update the local state with the received data after the PUT action (and set them as data is for index)
-                console.log("response",response);
-                console.log("app: ",App);
             }).catch(error => console.log(error))
         });
         
@@ -90,9 +90,12 @@ class createSurvey extends Component {
 
                     <label htmlFor="scope">Privé</label>
                 </div>
-                <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
-                    <Link to="/create-question">Créer</Link>
-                </button>
+                <Link to={`/create-question`}>
+                    <button type="button" className="mdc-button mdc-button--raised" onClick={this.submit.bind(this)}>
+                        Créer
+                    </button>
+                </Link>
+                
             </div>
 
         );

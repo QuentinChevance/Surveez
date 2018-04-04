@@ -1,9 +1,13 @@
 class QuestionController < ApplicationController
 
-
   def index
-    @questions = Question.order("created_at DESC")
-    render json: @questions
+    if params.has_key?(:id)
+      @question = Question.where(question_id: params[:id]).order("created_at DESC")
+      render json: @question
+    else
+      @questions = Question.order("created_at DESC")
+      render json: @questions
+    end
   end
 
   def create

@@ -47,3 +47,15 @@
     color: #2196F3;
     text-decoration: none;
 }
+
+.publicUrl {
+    word-wrap: break-word;
+}
+
+.publicSurvey:hover{
+    cursor: pointer;
+}
+
+.createdBy {
+    font-weight: bold;
+}
