@@ -6,6 +6,9 @@ class SurveyController < ApplicationController
     if params.has_key?(:user_id)
       @survey = Survey.where(user_id: params[:user_id]).order("created_at DESC")
       render json: @survey
+    elsif params.has_key?(:id)
+      @survey = Survey.find(params[:id])
+      render json: @survey
     else
       @surveys = Survey.order("created_at DESC")
       render json: @surveys
