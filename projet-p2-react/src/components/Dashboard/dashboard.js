@@ -147,7 +147,7 @@ export class Dashboard extends Component {
                         {this.state.surveys.map(survey => <div className="survey-item">
                             <p><span className="surveys-itemHeader">{survey.title}</span> - Crée le : {this.displaySurveyDate(survey.created_at)}</p>
                             <p>Nombre de réponses : <span className="nb-answers">{this.getNumberAnswers(survey.id)}</span> - Modifié le : {this.displaySurveyDate(survey.updated_at)}</p>
-                            <p className="publicUrl">Url privée: <a href={window.location.origin + "/answer?url=" + survey.url}>{window.location.origin + "/answer?url=" + survey.url}</a></p>
+                            <p className="publicUrl">Url privée: <Link to={`/answer?url=${survey.url}`}>{window.location.origin + "/answer?url=" + survey.url}</Link></p>
                             <div className="icons-list">
                                 <button title="Éditer"><Link to={"modifySurvey/" + survey.url}><i className="fa fa-pencil fa-2x" aria-hidden="true" /></Link></button>
                                 <button title="Réponses"><Link to={`/answers/${survey.url}`}><i className="fa fa-bar-chart fa-2x" aria-hidden="true" /></Link></button>
@@ -159,8 +159,8 @@ export class Dashboard extends Component {
                     <h2>Tous les questionnaires</h2>
                     <div className="surveys-list">
                         {this.state.publicSurveys.map(survey =>
-                            <div className="survey-item publicSurvey" onClick={() => { this.answerSurvey(survey) }}>
-                                <p><span className="survey-title" key={survey.id}>{survey.title}</span> - Crée par : <span className="createdBy">{this.createdBy(survey)}</span></p>
+                            <div className="survey-item publicSurvey">
+                                <Link to={`/answer?url=${survey.url}`}><p><span className="survey-title" key={survey.id}>{survey.title}</span> - Crée par : <span className="createdBy">{this.createdBy(survey)}</span></p></Link>
                             </div>)}
                     </div>
                 </div>
