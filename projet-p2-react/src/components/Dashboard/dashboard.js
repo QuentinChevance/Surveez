@@ -149,8 +149,8 @@ export class Dashboard extends Component {
                             <p>Nombre de réponses : <span className="nb-answers">{this.getNumberAnswers(survey.id)}</span> - Modifié le : {this.displaySurveyDate(survey.updated_at)}</p>
                             <p className="publicUrl">Url privée: <Link to={`/answer?url=${survey.url}`}>{window.location.origin + "/answer?url=" + survey.url}</Link></p>
                             <div className="icons-list">
-                                <button title="Éditer"><Link to={"modifySurvey/" + survey.url}><i className="fa fa-pencil fa-2x" aria-hidden="true" /></Link></button>
-                                <button title="Réponses"><Link to={`/answers/${survey.url}`}><i className="fa fa-bar-chart fa-2x" aria-hidden="true" /></Link></button>
+                                <Link to={"modifySurvey/" + survey.url}><button title="Éditer"><i className="fa fa-pencil fa-2x" aria-hidden="true" /></button></Link>
+                                <Link to={`/answers/${survey.url}`}><button title="Réponses"><i className="fa fa-bar-chart fa-2x" aria-hidden="true" /></button></Link>
                                 <button title="Publier"><i className="fa fa-check fa-2x" aria-hidden="true" /></button>
                                 <button title="Supprimer"><i className="fa fa-trash fa-2x" aria-hidden="true" surveyid={survey.id} onClick={this.deleteSurvey.bind(this)} /></button>
                             </div>
