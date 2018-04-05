@@ -145,7 +145,7 @@ export class Dashboard extends Component {
                     <h2>Mes questionnaires</h2>
                     <div className="surveys-list">
                         {this.state.surveys.map(survey => <div className="survey-item">
-                            <p><span className="survey-title">{survey.title}</span> - Crée le : {this.displaySurveyDate(survey.created_at)}</p>
+                            <p><span className="surveys-itemHeader">{survey.title}</span> - Crée le : {this.displaySurveyDate(survey.created_at)}</p>
                             <p>Nombre de réponses : <span className="nb-answers">{this.getNumberAnswers(survey.id)}</span> - Modifié le : {this.displaySurveyDate(survey.updated_at)}</p>
                             <p className="publicUrl">Url privée: <a href={window.location.origin + "/answer?url=" + survey.url}>{window.location.origin + "/answer?url=" + survey.url}</a></p>
                             <div className="icons-list">
