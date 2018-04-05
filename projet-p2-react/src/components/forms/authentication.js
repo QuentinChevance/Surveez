@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavLink, BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import {NavLink, BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import RegistrationForm from './registrationForm';
 import LoginForm from './loginForm';
 

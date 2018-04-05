@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import Authentication from "./components/forms/authentication";
 import axios from 'axios';
 import {Header} from "./components/Header/Header";
-import {Dashboard} from "./components/Dashboard/dashboard";
 import './components/Dashboard/dashboard.css';
 import { AnswerSurvey } from './components/Answer/answer_survey';
 
@@ -39,7 +38,6 @@ class App extends React.Component {
     handler() {
         this.checkConnection();
         this.checkAnswerUrl();
-        console.log("update");
     }
 
     disconnect (){
@@ -50,7 +48,6 @@ class App extends React.Component {
     checkAnswerUrl(){
         if(window.location.pathname === "/answer" && window.location.search.match(/\?url=.*/)){
             this.setState({displaySurvey:true});
-            console.log("displaySurvey: ",this.state.displaySurvey);
         } else {
             this.setState({displaySurvey:false});
 
@@ -58,7 +55,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("displaySurvey2: ",this.state.displaySurvey);
         return (
             <div>
                 {                     

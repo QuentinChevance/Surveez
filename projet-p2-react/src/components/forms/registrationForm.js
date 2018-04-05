@@ -15,7 +15,6 @@ class registrationForm extends Component {
             password: "",
             passwordconfirm: ""
         }
-        console.log("email start: ",this.state.email);
     }
     componentDidMount(){
         mdcAutoInit.register('MDCTextField', MDCTextField);
@@ -23,11 +22,7 @@ class registrationForm extends Component {
     }
 
     onStateChange(event){
-
-
         this.setState({[event.target.id]:event.target.value});
-        console.log("on est là",event.target);
-
     };
 
     displayErr(msgErr, para, target){
@@ -38,22 +33,22 @@ class registrationForm extends Component {
     };
 
     onBlur(event){
-        let para = document.createElement('p');
-        let target = event.target;
+        let para = document.createElement('p'),
+            target = event.target;
+
         if(!target.checkValidity()){
-            console.log("on est ici: ",event.target.id);
             switch (event.target.id){
                 case "email":
-                    this.displayErr('Votre e-mail est invalide',para,target).bind(this);
+                    this.displayErr('Votre e-mail est invalide',para,target);
                     break;
                 case "firstName":
-                    this.displayErr('Votre prénom est requis',para,target).bind(this);
+                    this.displayErr('Votre prénom est requis',para,target);
                     break;
                 case "lastName":
-                    this.displayErr('Votre nom est requis',para,target).bind(this);
+                    this.displayErr('Votre nom est requis',para,target);
                     break;
                 case "password":
-                    this.displayErr('Votre mot de passe doit comporter au minimum 6 caractères avec au moins 1 chiffre et 1 majuscule',para,target).bind(this);
+                    this.displayErr('Votre mot de passe doit comporter au minimum 6 caractères avec au moins 1 chiffre et 1 majuscule',para,target);
                     break;
                 default:
             }
@@ -67,7 +62,6 @@ class registrationForm extends Component {
         let validForm = true;
         for(let i =0; i<document.getElementsByClassName("mdc-text-field__input").length;i++){
             if(!document.getElementsByClassName("mdc-text-field__input")[i].checkValidity()){
-                console.log("c'est faux");
                 validForm = false;
                 break;
             }
@@ -84,8 +78,6 @@ class registrationForm extends Component {
 
                 }
             ).then(response => {
-                // Update the local state with the received data after the PUT action (and set them as data is for index)
-                console.log("response",response);
                 if (response.statusText === "Created"){
                     alert("Votre compte a été crée.");
                     this.setState({
@@ -98,12 +90,11 @@ class registrationForm extends Component {
                     });
                 }
             }).catch(error => {
-                console.log(error);
+                console.error(error);
                 alert("Le compte à cette adresse e-mail existe déjà.");
             });
         } else {
             alert("Un ou des champs ne sont pas valides");
-            console.log("password: ",this.state.password," passwordconfirm: ",this.state.passwordconfirm);
         }
 
     };
@@ -114,16 +105,16 @@ class registrationForm extends Component {
             <div className="container container--center home">
                 <div className="card" id="registrationForm">
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="email" className="mdc-text-field__input" value={this.state.email} onChange={this.onStateChange.bind(this)} id="email" required="required" onBlur={this.onBlur}/>
+                        <input type="email" className="mdc-text-field__input" value={this.state.email} onChange={this.onStateChange.bind(this)} id="email" required="required" onBlur={this.onBlur.bind(this)}/>
                         <label htmlFor="email" className="mdc-text-field__label" data-text="E-mail">E-mail</label>
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" className="mdc-text-field__input" value={this.state.firstName} onChange={this.onStateChange.bind(this)} id="firstName" required="required" onBlur={this.onBlur}/>
+                        <input type="text" className="mdc-text-field__input" value={this.state.firstName} onChange={this.onStateChange.bind(this)} id="firstName" required="required" onBlur={this.onBlur.bind(this)}/>
                         <label htmlFor="firstName" className="mdc-text-field__label" data-text="Prénom">Prénom</label>
                     </div>
 
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="text" className="mdc-text-field__input" value={this.state.lastName} onChange={this.onStateChange.bind(this)} id="lastName" required="required" onBlur={this.onBlur}/>
+                        <input type="text" className="mdc-text-field__input" value={this.state.lastName} onChange={this.onStateChange.bind(this)} id="lastName" required="required" onBlur={this.onBlur.bind(this)}/>
                         <label htmlFor="lastName" className="mdc-text-field__label" data-text="Nom">Nom</label>
                     </div>
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
@@ -132,7 +123,7 @@ class registrationForm extends Component {
                     </div>
 
                     <div className="mdc-text-field" data-mdc-auto-init="MDCTextField">
-                        <input type="password" className="mdc-text-field__input" value={this.state.password} onChange={this.onStateChange.bind(this)} id="password" required="required" minLength="6" pattern="(?=.*[A-Z])(?=.*\d).*" onBlur={this.onBlur}/>
+                        <input type="password" className="mdc-text-field__input" value={this.state.password} onChange={this.onStateChange.bind(this)} id="password" required="required" minLength="6" pattern="(?=.*[A-Z])(?=.*\d).*" onBlur={this.onBlur.bind(this)}/>
                         <label htmlFor="password" className="mdc-text-field__label" data-text="Mot de passe">Mot de passe</label>
 
                     </div>
