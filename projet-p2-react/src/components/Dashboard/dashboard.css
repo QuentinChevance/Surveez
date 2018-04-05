@@ -79,3 +79,8 @@
 .createdBy {
     font-weight: bold;
 }
+
+.publicSurvey a {
+    text-decoration:none;
+    color: black;
+}

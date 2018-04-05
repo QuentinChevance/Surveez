@@ -10,6 +10,8 @@ import axios from 'axios';
 import { Dashboard } from "../Dashboard/dashboard";
 import AnswersSurvey from "../Answer/answers_survey";
 import modifySurvey from "../forms/modifySurvey";
+import AnswerSurvey from "../Answer/answer_survey";
+
 
 
 export class Header extends Component {
@@ -115,6 +117,7 @@ export class Header extends Component {
                     <Route exact path="/create-question" component={createQuestion} />
                     <Route exact path="/modifySurvey/:url" component={modifySurvey} />
                     <Route exact path="/answers/:url" component={AnswersSurvey} />
+                    <Route exact path="/answer" component={AnswerSurvey} />
 
                 </div>
             </Router>

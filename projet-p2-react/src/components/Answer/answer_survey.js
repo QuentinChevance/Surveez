@@ -3,7 +3,7 @@ import axios from "axios/index";
 import mdcAutoInit from "@material/auto-init/index";
 import { MDCTextField } from "@material/textfield/index";
 
-export class AnswerSurvey extends Component {
+class AnswerSurvey extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -168,3 +168,4 @@ export class AnswerSurvey extends Component {
         );
     }
 }
+export default AnswerSurvey;
